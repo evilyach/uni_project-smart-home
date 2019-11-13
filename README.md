@@ -1,7 +1,26 @@
-# Smart Home Course Project
-"Smart Home" is my course project for Database Security discipline. It implements backend, frontend and database that interact together.
+# Smart Home Course Project (smart-home-course-project)
 
-## Sources
+\"Smart Home\" DBSec Course Project
 
+## Install the dependencies
+```bash
+npm install
+```
 
-Frontend is modified [SpiderKeeper](https://github.com/DormyMo/SpiderKeeper).
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
+```bash
+quasar dev
+```
+
+### Lint the files
+```bash
+npm run lint
+```
+
+### Build the app for production
+```bash
+quasar build
+```
+
+### Customize the configuration
+See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
