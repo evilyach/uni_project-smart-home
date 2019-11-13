@@ -7,103 +7,77 @@
           dense
           round
           @click="leftDrawerOpen = !leftDrawerOpen"
-          icon="menu"
+          icon="home"
           aria-label="Menu"
         />
 
         <q-toolbar-title>
-          Quasar App
+          Умный дом
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-2"
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+        <q-item-label header>Возможности</q-item-label>
+
+        <q-item clickable tag="a" href="/addnew">
           <q-item-section avatar>
-            <q-icon name="school" />
+            <q-icon name="add" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>Добавить устройство</q-item-label>
+            <q-item-label caption>Добавить новое устройство</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://github.quasar.dev"
-        >
+
+        <q-item clickable tag="a" href="/list">
           <q-item-section avatar>
-            <q-icon name="code" />
+            <q-icon name="list" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
+            <q-item-label>Вывести устройства</q-item-label>
+            <q-item-label caption>Вывести список всех устройств</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://chat.quasar.dev"
-        >
+
+        <q-item clickable tag="a" href="/triggers">
           <q-item-section avatar>
-            <q-icon name="chat" />
+            <q-icon name="settings_input_component" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
+            <q-item-label>Триггеры</q-item-label>
+            <q-item-label caption>Настроить триггеры</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://forum.quasar.dev"
-        >
+
+        <q-item clickable tag="a" href="/automation">
           <q-item-section avatar>
-            <q-icon name="record_voice_over" />
+            <q-icon name="cached" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
+            <q-item-label>Автоматизация</q-item-label>
+            <q-item-label caption>
+              Настроить автоматические действия
+            </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://twitter.quasar.dev"
-        >
+
+        <!---->
+
+        <q-item-label header>Устройства</q-item-label>
+
+        <!---->
+
+        <q-item-label header>Настройки</q-item-label>
+
+        <q-item clickable tag="a" href="/about">
           <q-item-section avatar>
-            <q-icon name="rss_feed" />
+            <q-icon name="info" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          tag="a"
-          target="_blank"
-          href="https://facebook.quasar.dev"
-        >
-          <q-item-section avatar>
-            <q-icon name="public" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Facebook</q-item-label>
-            <q-item-label caption>@QuasarFramework</q-item-label>
+            <q-item-label>Справка</q-item-label>
+            <q-item-label caption>Информация о проекте</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
