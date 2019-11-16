@@ -1,13 +1,21 @@
+import MyLayout from "layouts/MyLayout.vue";
+import Index from "pages/Index.vue";
+import About from "pages/About.vue";
+
 const routes = [
   {
-    path: "/",
-    component: () => import("layouts/MyLayout.vue"),
-    children: [{ path: "", component: () => import("pages/Index.vue") }]
-  },
-  {
-    path: "/about",
-    component: () => import("layouts/MyLayout.vue"),
-    children: [{ path: "", component: () => import("pages/About.vue") }]
+    path: "",
+    component: MyLayout,
+    children: [
+      {
+        path: "/index",
+        component: Index
+      },
+      {
+        path: "/about",
+        component: About
+      }
+    ]
   }
 ];
 
