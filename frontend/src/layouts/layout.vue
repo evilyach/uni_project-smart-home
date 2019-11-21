@@ -91,7 +91,7 @@
 
 <script>
 export default {
-  name: "MyLayout",
+  name: "Layout",
 
   data() {
     return {

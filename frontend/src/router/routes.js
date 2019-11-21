@@ -1,19 +1,15 @@
-import MyLayout from "layouts/MyLayout.vue";
-import Index from "pages/Index.vue";
-import About from "pages/About.vue";
-
 const routes = [
   {
     path: "",
-    component: MyLayout,
+    component: () => import("layouts/layout.vue"),
     children: [
       {
         path: "/index",
-        component: Index
+        component: () => import("pages/index.vue")
       },
       {
         path: "/about",
-        component: About
+        component: () => import("pages/about.vue")
       }
     ]
   }
@@ -23,7 +19,7 @@ const routes = [
 if (process.env.MODE !== "ssr") {
   routes.push({
     path: "*",
-    component: () => import("pages/Error404.vue")
+    component: () => import("pages/404.vue")
   });
 }
 
