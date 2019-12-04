@@ -131,7 +131,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable tag="a" href="/rawUsers">
+        <q-item clickable tag="a" href="/rawUserAccounts">
           <q-item-section avatar>
             <q-icon name="view_list" />
           </q-item-section>

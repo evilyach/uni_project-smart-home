@@ -14,6 +14,34 @@ const routes = [
       {
         path: "/addnew",
         component: () => import("pages/addDevice.vue")
+      },
+      {
+        path: "/rawAreas",
+        component: () => import("pages/rawTable/RawTableAreas.vue")
+      },
+      {
+        path: "/rawDeviceTypes",
+        component: () => import("pages/rawTable/RawTableDeviceTypes.vue")
+      },
+      {
+        path: "/rawDevices",
+        component: () => import("pages/rawTable/RawTableDevices.vue")
+      },
+      {
+        path: "/rawProfiles",
+        component: () => import("pages/rawTable/RawTableProfiles.vue")
+      },
+      {
+        path: "/rawRealEstateTypes",
+        component: () => import("pages/rawTable/RawTableRealEstateTypes.vue")
+      },
+      {
+        path: "/rawRealEstates",
+        component: () => import("pages/rawTable/RawTableRealEstates.vue")
+      },
+      {
+        path: "/rawUserAccounts",
+        component: () => import("pages/rawTable/RawTableUserAccounts.vue")
       }
     ]
   }
