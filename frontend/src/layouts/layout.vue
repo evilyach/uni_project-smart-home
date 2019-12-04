@@ -69,6 +69,80 @@
 
         <!---->
 
+        <q-item-label header>Сырой вывод</q-item-label>
+
+        <q-item clickable tag="a" href="/rawAreas">
+          <q-item-section avatar>
+            <q-icon name="view_list" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Пространства</q-item-label>
+            <q-item-label caption>Таблица "Пространства"</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable tag="a" href="/rawDeviceTypes">
+          <q-item-section avatar>
+            <q-icon name="view_list" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Типы устройств</q-item-label>
+            <q-item-label caption>Таблица "Типы устройств"</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable tag="a" href="/rawDevices">
+          <q-item-section avatar>
+            <q-icon name="view_list" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Устройства</q-item-label>
+            <q-item-label caption>Таблица "Устройства"</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable tag="a" href="/rawProfiles">
+          <q-item-section avatar>
+            <q-icon name="view_list" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Профили</q-item-label>
+            <q-item-label caption>Таблица "Профили"</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable tag="a" href="/rawRealEstateTypes">
+          <q-item-section avatar>
+            <q-icon name="view_list" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Типы недвижимости</q-item-label>
+            <q-item-label caption>Таблица "Типы недвижимости"</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable tag="a" href="/rawRealEstates">
+          <q-item-section avatar>
+            <q-icon name="view_list" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Недвижимость</q-item-label>
+            <q-item-label caption>Таблица "Недвижимость"</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable tag="a" href="/rawUsers">
+          <q-item-section avatar>
+            <q-icon name="view_list" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Пользователи</q-item-label>
+            <q-item-label caption>Таблица "Пользователи"</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <!---->
+
         <q-item-label header>Настройки</q-item-label>
 
         <q-item clickable tag="a" href="/about">
