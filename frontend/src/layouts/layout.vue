@@ -21,7 +21,7 @@
       <q-list>
         <q-item-label header>Возможности</q-item-label>
 
-        <q-item clickable tag="a" href="/addnew">
+        <q-item clickable to="/addnew">
           <q-item-section avatar>
             <q-icon name="add" />
           </q-item-section>
@@ -31,7 +31,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable tag="a" href="/list">
+        <q-item clickable to="/list">
           <q-item-section avatar>
             <q-icon name="list" />
           </q-item-section>
@@ -49,7 +49,7 @@
 
         <q-item-label header>Сырой вывод</q-item-label>
 
-        <q-item clickable tag="a" href="/rawAreas">
+        <q-item clickable to="/rawAreas">
           <q-item-section avatar>
             <q-icon name="view_list" />
           </q-item-section>
@@ -59,7 +59,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable tag="a" href="/rawDeviceTypes">
+        <q-item clickable to="/rawDeviceTypes">
           <q-item-section avatar>
             <q-icon name="view_list" />
           </q-item-section>
@@ -69,7 +69,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable tag="a" href="/rawDevices">
+        <q-item clickable to="/rawDevices">
           <q-item-section avatar>
             <q-icon name="view_list" />
           </q-item-section>
@@ -79,7 +79,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable tag="a" href="/rawProfiles">
+        <q-item clickable to="/rawProfiles">
           <q-item-section avatar>
             <q-icon name="view_list" />
           </q-item-section>
@@ -89,7 +89,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable tag="a" href="/rawRealEstateTypes">
+        <q-item clickable to="/rawRealEstateTypes">
           <q-item-section avatar>
             <q-icon name="view_list" />
           </q-item-section>
@@ -99,7 +99,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable tag="a" href="/rawRealEstates">
+        <q-item clickable to="/rawRealEstates">
           <q-item-section avatar>
             <q-icon name="view_list" />
           </q-item-section>
@@ -109,7 +109,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable tag="a" href="/rawUserAccounts">
+        <q-item clickable to="/rawUserAccounts">
           <q-item-section avatar>
             <q-icon name="view_list" />
           </q-item-section>
@@ -123,7 +123,7 @@
 
         <q-item-label header>Настройки</q-item-label>
 
-        <q-item clickable tag="a" href="/about">
+        <q-item clickable to="/about">
           <q-item-section avatar>
             <q-icon name="info" />
           </q-item-section>
