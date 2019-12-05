@@ -1,13 +1,13 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh LpR ffr">
+    <q-header elevated class="bg-primary">
       <q-toolbar>
         <q-btn
           flat
           dense
           round
           @click="leftDrawerOpen = !leftDrawerOpen"
-          icon="home"
+          icon="menu"
           aria-label="Menu"
         />
 
