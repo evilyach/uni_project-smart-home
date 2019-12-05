@@ -41,28 +41,6 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable tag="a" href="/triggers">
-          <q-item-section avatar>
-            <q-icon name="settings_input_component" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Триггеры</q-item-label>
-            <q-item-label caption>Настроить триггеры</q-item-label>
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable tag="a" href="/automation">
-          <q-item-section avatar>
-            <q-icon name="cached" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Автоматизация</q-item-label>
-            <q-item-label caption>
-              Настроить автоматические действия
-            </q-item-label>
-          </q-item-section>
-        </q-item>
-
         <!---->
 
         <q-item-label header>Устройства</q-item-label>
