@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-sm">
     <q-table title="Аккаунты пользователей" :data="data" :columns="columns" row-key="name">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
@@ -97,10 +97,9 @@ export default {
 .my-table-details {
   font-size: 0.85em;
   font-style: italic;
-  max-width: 200px;
+  max-width: 300px;
   white-space: normal;
   color: #555;
   margin-top: 4px;
-  margin-right: 100px;
 }
 </style>

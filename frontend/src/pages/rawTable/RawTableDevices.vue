@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-sm">
     <q-table title="Устройства" :data="data" :columns="columns" row-key="name">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
