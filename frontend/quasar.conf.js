@@ -5,7 +5,11 @@ module.exports = function(ctx) {
   return {
     boot: [],
     css: ["app.styl"],
-    extras: ["roboto-font", "material-icons", "fontawesome-v5"],
+    extras: [
+      "roboto-font",
+      "material-icons",
+      "fontawesome-v5"
+    ],
     framework: {
       all: "auto",
       components: ["QToggle"],
