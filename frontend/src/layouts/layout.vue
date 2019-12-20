@@ -21,7 +21,7 @@
       <q-list>
         <q-item-label header>Возможности</q-item-label>
 
-        <q-item clickable to="/addnew">
+        <q-item clickable to="/addNew">
           <q-item-section avatar>
             <q-icon name="add" />
           </q-item-section>
