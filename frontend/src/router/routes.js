@@ -12,7 +12,7 @@ const routes = [
         component: () => import("pages/about.vue")
       },
       {
-        path: "/addnew",
+        path: "/addNew",
         component: () => import("pages/addDevice.vue")
       },
       {
