@@ -17,10 +17,14 @@ def index():
 def get_raw_table(table_name):
     ''' List devices query route '''
     with postgresql.open(config.DATABASE_URI) as db:
-        query = db.prepare('SELECT * FROM "' + table_name + '"')
+        try:
+            query = db.prepare('select select_from_raw_' + table_name + '()')
+        except:
+            return jsonify('Error occured during query', 500)
+
         return jsonify(query(), 200)
 
-    return jsonify('Could not query!'), 500
+    return jsonify('Could not connect to database!', 500)
 
 
 if __name__ == '__main__':
