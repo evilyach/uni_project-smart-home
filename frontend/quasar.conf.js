@@ -5,16 +5,15 @@ module.exports = function(ctx) {
   return {
     boot: [],
     css: ["app.styl"],
-    extras: [
-      "roboto-font",
-      "material-icons",
-      "fontawesome-v5"
-    ],
+    extras: ["roboto-font", "material-icons", "fontawesome-v5"],
     framework: {
       all: "auto",
       components: ["QToggle"],
       directives: [],
-      plugins: []
+      plugins: ["Notify"],
+      config: {
+        notify: {}
+      }
     },
     supportIE: false,
     build: {
@@ -60,7 +59,7 @@ module.exports = function(ctx) {
             src: "statics/icons/icon-128x128.png",
             sizes: "128x128",
             type: "image/png"
-          },
+          }
         ]
       }
     },
@@ -71,4 +70,4 @@ module.exports = function(ctx) {
       builder: {}
     }
   };
-}
+};
