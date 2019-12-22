@@ -24,6 +24,10 @@ const routes = [
         component: () => import("pages/rawTable/RawTableCommands.vue")
       },
       {
+        path: "/rawCommandsByDevice",
+        component: () => import("pages/rawTable/RawTableCommandsByDevice.vue")
+      },
+      {
         path: "/rawDeviceTypes",
         component: () => import("pages/rawTable/RawTableDeviceTypes.vue")
       },
