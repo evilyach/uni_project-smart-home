@@ -1,6 +1,10 @@
 <template>
   <div class="q-pa-sm">
-    <q-table title="Пространства" :data="data" :columns="columns" row-key="name">
+    <q-table
+      title="Пространства"
+      :data="data"
+      :columns="columns"
+    >
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -16,37 +20,22 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       columns: [
         {
-          name: "name",
-          required: true,
-          label: "Название столбца",
-          align: "center",
-          field: row => row.name,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "area_id",
+          name: "id",
           align: "center",
           label: "Идентификатор пространства",
-          field: row => row.area_id,
+          field: row => row.id,
           format: val => `${val}`,
           sortable: true
         },
         {
-          name: "area_real_estate_id",
-          align: "center",
-          label: "Идентификатор недвижимости",
-          field: row => row.area_real_estate_id,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "area_name",
+          name: "name",
           align: "center",
           label: "Имя",
           field: row => row.name,
@@ -54,22 +43,34 @@ export default {
           sortable: true
         }
       ],
-      data: [
-        {
-          name: "Гостинная",
-          area_id: "1",
-          area_real_estate_id: "1",
-          area_name: "Гостинная",
-        },
-        {
-          name: "Кухня",
-          area_id: "2",
-          area_real_estate_id: "1",
-          area_name: "Кухня",
-        },
-      ]
+      data: [],
+      getData() {
+        axios.get("http://localhost:13491/api/raw/area")
+          .then(res => {
+            const data = res['data'][0];
+
+            data.forEach(element => {
+              const id = element[0][0];
+              const name = element[0][1];
+
+              this.data.push({
+                "id": id,
+                "name": name
+              });
+            });
+          })
+          .catch(e => {
+            this.$q.notify({
+              message: "Не удалось получить доступ к базе данных: " + e,
+              color: "negative"
+            });
+          });
+      },
     }
-  }
+  },
+  created() {
+    this.getData();
+  },
 }
 </script>
 
@@ -77,7 +78,6 @@ export default {
 .my-table-details {
   font-size: 0.85em;
   font-style: italic;
-  max-width: 300px;
   white-space: normal;
   color: #555;
   margin-top: 4px;
