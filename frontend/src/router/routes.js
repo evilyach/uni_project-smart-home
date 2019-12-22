@@ -68,6 +68,10 @@ const routes = [
       {
         path: "/rawUserAccounts",
         component: () => import("pages/rawTable/RawTableUserAccounts.vue")
+      },
+      {
+        path: "/rawUserAccountTypes",
+        component: () => import("pages/rawTable/RawTableUserAccountTypes.vue")
       }
     ]
   }
