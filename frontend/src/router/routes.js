@@ -32,12 +32,16 @@ const routes = [
         component: () => import("pages/rawTable/RawTableCommandTypes.vue")
       },
       {
-        path: "/rawDeviceTypes",
-        component: () => import("pages/rawTable/RawTableDeviceTypes.vue")
-      },
-      {
         path: "/rawDevices",
         component: () => import("pages/rawTable/RawTableDevices.vue")
+      },
+      {
+        path: "/rawDeviceParameters",
+        component: () => import("pages/rawTable/RawTableDeviceParameters.vue")
+      },
+      {
+        path: "/rawDeviceTypes",
+        component: () => import("pages/rawTable/RawTableDeviceTypes.vue")
       },
       {
         path: "/rawProfiles",

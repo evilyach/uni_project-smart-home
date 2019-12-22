@@ -104,8 +104,8 @@
             <q-icon name="perm_device_information" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Типы устройств</q-item-label>
-            <q-item-label caption>Таблица "Типы устройств"</q-item-label>
+            <q-item-label>Параметры устройств</q-item-label>
+            <q-item-label caption>Таблица "Параметры устройств"</q-item-label>
           </q-item-section>
         </q-item>
 
