@@ -1,6 +1,10 @@
 <template>
   <div class="q-pa-sm">
-    <q-table title="Профиль" :data="data" :columns="columns" row-key="name">
+    <q-table
+      title="Профили"
+      :data="data"
+      :columns="columns"
+    >
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -16,66 +20,67 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       columns: [
         {
+          name: "id",
+          align: "center",
+          label: "ID профиля",
+          field: row => row.id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "user_account_id",
+          align: "center",
+          label: "ID учетной записи",
+          field: row => row.user_account_id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
           name: "name",
-          required: true,
-          label: "Название столбца",
           align: "center",
+          label: "Имя",
           field: row => row.name,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "profile_id",
-          align: "center",
-          label: "Идентификатор профиля",
-          field: row => row.profile_id,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "profile_user_account_id",
-          align: "center",
-          label: "Идентификатор аккаунта пользователя",
-          field: row => row.profile_user_account_id,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "device_profile_name",
-          align: "center",
-          label: "Имя профиля",
-          field: row => row.device_profile_name,
           format: val => `${val}`,
           sortable: true
         }
       ],
-      data: [
-        {
-          name: "Будние дни",
-          profile_id: "1",
-          profile_user_account_id: "1",
-          device_profile_name: "Будние дни",
-        },
-        {
-          name: "Выходные дни",
-          profile_id: "2",
-          profile_user_account_id: "1",
-          device_profile_name: "Выходные дни",
-        },
-        {
-          name: "Праздники",
-          profile_id: "3",
-          profile_user_account_id: "1",
-          device_profile_name: "Праздники",
-        },
-      ]
+      data: [],
+      getData() {
+        axios.get("http://localhost:13491/api/raw/profile")
+          .then(res => {
+            const data = res['data'][0];
+
+            data.forEach(element => {
+              const id = element[0][0];
+              const user_account_id = element[0][1];
+              const name = element[0][2];
+
+              this.data.push({
+                "id": id,
+                "user_account_id": user_account_id,
+                "name": name
+              });
+            });
+          })
+          .catch(e => {
+            this.$q.notify({
+              message: "Не удалось получить доступ к базе данных: " + e,
+              color: "negative"
+            });
+          });
+      },
     }
-  }
+  },
+  created() {
+    this.getData();
+  },
 }
 </script>
 
@@ -83,7 +88,6 @@ export default {
 .my-table-details {
   font-size: 0.85em;
   font-style: italic;
-  max-width: 300px;
   white-space: normal;
   color: #555;
   margin-top: 4px;
