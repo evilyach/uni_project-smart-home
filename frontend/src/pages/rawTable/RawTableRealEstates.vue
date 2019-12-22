@@ -1,6 +1,10 @@
 <template>
   <div class="q-pa-sm">
-    <q-table title="Недвижимость" :data="data" :columns="columns" row-key="name">
+    <q-table
+      title="Недвижимость"
+      :data="data"
+      :columns="columns"
+    >
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -16,99 +20,97 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       columns: [
         {
-          name: "name",
-          required: true,
-          label: "Название столбца",
+          name: "id",
           align: "center",
+          label: "ID недвижимости",
+          field: row => row.id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "real_estate_type_id",
+          align: "center",
+          label: "ID типа недвижимости",
+          field: row => row.real_estate_type_id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "area_id",
+          align: "center",
+          label: "ID типа пространства",
+          field: row => row.area_id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "name",
+          align: "center",
+          label: "Имя",
           field: row => row.name,
           format: val => `${val}`,
           sortable: true
         },
         {
-          name: "real_estate_id",
+          name: "address",
           align: "center",
-          label: "Идентификатор недвижимости",
-          field: row => row.real_estate_id,
+          label: "Адрес",
+          field: row => row.address,
           format: val => `${val}`,
           sortable: true
         },
         {
-          name: "real_estate_user_account_id",
+          name: "description",
           align: "center",
-          label: "Идентификатор аккаунта пользователя",
-          field: row => row.real_estate_user_account_id,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "real_estate_real_estate_type_id",
-          align: "center",
-          label: "Идентификатор типа недвижимости",
-          field: row => row.real_estate_real_estate_type_id,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "real_estate_name",
-          align: "center",
-          label: "Имя",
-          field: row => row.real_estate_name,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "real_estate_address",
-          align: "center",
-          label: "Имя",
-          field: row => row.real_estate_address,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "real_estate_details",
-          align: "center",
-          label: "Имя",
-          field: row => row.real_estate_details,
+          label: "Описание",
+          field: row => row.description,
           format: val => `${val}`,
           sortable: true
         },
       ],
-      data: [
-        {
-          name: "Дом на Пушкина",
-          real_estate_id: "1",
-          real_estate_user_account_id: "1",
-          real_estate_real_estate_type_id: "1",
-          real_estate_name: "Дом на Пушкина",
-          real_estate_address: "Рязанская область, г. Рязань, ул. Пушкина, д. 1, кв. 100",
-          real_estate_details: "Дом, где живет владелец информационной системы"
-        },
-        {
-          name: "Дача в Подмосковье",
-          real_estate_id: "1",
-          real_estate_user_account_id: "1",
-          real_estate_real_estate_type_id: "2",
-          real_estate_name: "Дача в Подмосковье",
-          real_estate_address: "Московская область, г. Бронницы, ул. Дачная, д. 114",
-          real_estate_details: "Летняя дача"
-        },
-        {
-          name: "Гараж",
-          real_estate_id: "1",
-          real_estate_user_account_id: "1",
-          real_estate_real_estate_type_id: "3",
-          real_estate_name: "Гараж",
-          real_estate_address: "Рязанская область, г. Рязань, ул. Пушкина, стр. 15",
-          real_estate_details: "Гараж для работы над автомобилем"
-        },
-      ]
+      data: [],
+      getData() {
+        axios.get("http://localhost:13491/api/raw/real_estate")
+          .then(res => {
+            const data = res['data'][0];
+
+            data.forEach(element => {
+              const id = element[0][0];
+              const real_estate_type_id = element[0][1];
+              const area_id = element[0][2];
+              const name = element[0][3];
+              const address = element[0][4];
+              const description = element[0][5];
+
+              this.data.push({
+                "id": id,
+                "real_estate_type_id": real_estate_type_id,
+                "area_id": area_id,
+                "name": name,
+                "address": address,
+                "description": description,
+              });
+            });
+          })
+          .catch(e => {
+            this.$q.notify({
+              message: "Не удалось получить доступ к базе данных: " + e,
+              color: "negative"
+            });
+          });
+      },
     }
-  }
+  },
+  created() {
+    this.getData();
+  },
 }
 </script>
 
@@ -116,7 +118,6 @@ export default {
 .my-table-details {
   font-size: 0.85em;
   font-style: italic;
-  max-width: 300px;
   white-space: normal;
   color: #555;
   margin-top: 4px;
