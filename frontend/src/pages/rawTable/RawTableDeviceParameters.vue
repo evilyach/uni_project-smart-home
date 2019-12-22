@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-sm">
     <q-table
-      title="Команды"
+      title="Параметры устройств"
       :data="data"
       :columns="columns"
     >
