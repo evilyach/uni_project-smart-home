@@ -1,6 +1,10 @@
 <template>
   <div class="q-pa-sm">
-    <q-table title="Устройства" :data="data" :columns="columns" row-key="name">
+    <q-table
+      title="Команды"
+      :data="data"
+      :columns="columns"
+    >
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -16,140 +20,124 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       columns: [
         {
-          name: "name",
-          required: true,
-          label: "Название столбца",
+          name: "id",
           align: "center",
+          label: "ID устройства",
+          field: row => row.id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "device_type_id",
+          align: "center",
+          label: "ID типа устройства",
+          field: row => row.device_type_id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "real_estate_id",
+          align: "center",
+          label: "ID помещения",
+          field: row => row.real_estate_id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "status",
+          align: "center",
+          label: "Статус",
+          field: row => row.status,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "time_activated",
+          align: "center",
+          label: "Время активации",
+          field: row => row.time_activated,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "time_deactivated",
+          align: "center",
+          label: "Время деактивации",
+          field: row => row.time_deactivated,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "device_parameters_id",
+          align: "center",
+          label: "ID параметров",
+          field: row => row.device_parameters_id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: "name",
+          align: "center",
+          label: "Имя",
           field: row => row.name,
           format: val => `${val}`,
           sortable: true
         },
-        {
-          name: "device_id",
-          align: "center",
-          label: "Идентификатор устройства",
-          field: row => row.device_id,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "device_real_estate_id",
-          align: "center",
-          label: "Идентификатор помещения",
-          field: row => row.device_real_estate_id,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "device_area_id",
-          align: "center",
-          label: "Идентификатор пространства",
-          field: row => row.device_area_id,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "device_device_type_id",
-          align: "center",
-          label: "Идентификатор типа устройства",
-          field: row => row.device_device_type_id,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "device_parameters",
-          align: "center",
-          label: "Параметры устройства",
-          field: row => row.device_parameters,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "device_status",
-          align: "center",
-          label: "Статус устройства",
-          field: row => row.device_status,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "device_time_activated",
-          align: "center",
-          label: "Время активации",
-          field: row => row.device_time_activated,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "device_time_deactivated",
-          align: "center",
-          label: "Время выключения",
-          field: row => row.device_time_deactivated,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "device_is_active",
-          align: "center",
-          label: "Включено ли устройство",
-          field: row => row.device_is_active,
-          format: val => `${val}`,
-          sortable: true
-        },
       ],
-      data: [
-        {
-          name: "Кондиционер SUPER AC 9000",
-          device_id: "1",
-          device_real_estate_id: "1",
-          device_area_id: "1",
-          device_device_type_id: "1",
-          device_parameters: "Режимы: охлаждение и обогревание",
-          device_status: "Включен",
-          device_time_activated: "22:10",
-          device_time_deactivated: "22:15",
-          device_is_active: "Включено"
-        },
-        {
-          name: "Кондиционер MEGA AC 2000",
-          device_id: "2",
-          device_real_estate_id: "1",
-          device_area_id: "2",
-          device_device_type_id: "1",
-          device_parameters: "Режимы: охлаждение",
-          device_status: "Ошибка",
-          device_time_activated: "22:20",
-          device_time_deactivated: "22:55",
-          device_is_active: "Выключено"
-        },
-        {
-          name: "Умный чайник AWESOME TEAPOT 1000",
-          device_id: "3",
-          device_real_estate_id: "1",
-          device_area_id: "3",
-          device_device_type_id: "2",
-          device_parameters: "Время подогрева: 10 минут",
-          device_status: "Успешно завершено",
-          device_time_activated: "22:40",
-          device_time_deactivated: "22:50",
-          device_is_active: "Выключено"
-        },
-      ]
-    };
-  }
-};
+      data: [],
+      getData() {
+        axios.get("http://localhost:13491/api/raw/device")
+          .then(res => {
+            const data = res['data'][0];
+
+            data.forEach(element => {
+              const id = element[0][0];
+              const device_type_id = element[0][1];
+              const real_estate_id = element[0][2];
+              const status = element[0][3];
+              const time_activated = element[0][4];
+              const time_deactivated = element[0][5];
+              const device_parameters_id = element[0][6];
+              const name = element[0][7];
+
+              this.data.push({
+                "id": id,
+                "device_type_id": device_type_id,
+                "real_estate_id": real_estate_id,
+                "status": status,
+                "time_activated": time_activated,
+                "time_deactivated": time_deactivated,
+                "device_parameters_id": device_parameters_id,
+                "name": name
+              });
+            });
+          })
+          .catch(e => {
+            this.$q.notify({
+              message: "Не удалось получить доступ к базе данных: " + e,
+              color: "negative"
+            });
+          });
+      },
+    }
+  },
+  created() {
+    this.getData();
+  },
+}
 </script>
 
 <style>
 .my-table-details {
   font-size: 0.85em;
   font-style: italic;
-  max-width: 300px;
   white-space: normal;
   color: #555;
   margin-top: 4px;
