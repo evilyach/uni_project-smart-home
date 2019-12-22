@@ -29,7 +29,7 @@ export default {
         {
           name: "id",
           align: "center",
-          label: "Идентификатор пространства",
+          label: "ID пространства",
           field: row => row.id,
           format: val => `${val}`,
           sortable: true
