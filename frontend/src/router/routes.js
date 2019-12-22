@@ -20,6 +20,10 @@ const routes = [
         component: () => import("pages/rawTable/RawTableAreas.vue")
       },
       {
+        path: "/rawCommands",
+        component: () => import("pages/rawTable/RawTableCommands.vue")
+      },
+      {
         path: "/rawDeviceTypes",
         component: () => import("pages/rawTable/RawTableDeviceTypes.vue")
       },
