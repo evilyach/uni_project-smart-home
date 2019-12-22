@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-sm">
     <q-table
-      title="Пространства"
+      title="Команды"
       :data="data"
       :columns="columns"
     >
