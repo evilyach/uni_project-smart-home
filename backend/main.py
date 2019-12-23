@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, make_response
 import postgresql
+import re
 
 import config
 
@@ -16,11 +17,14 @@ def index():
 @app.route('/api/raw/<string:table_name>', methods=['GET'])
 def get_raw_table(table_name):
     ''' List devices query route '''
+    if not re.match('^[a-z_]*$', table_name):
+        return jsonify('Table name can only contain letters!', 400)
+
     with postgresql.open(config.DATABASE_URI) as db:
         try:
             query = db.prepare('select select_from_raw_' + table_name + '()')
         except:
-            return jsonify('Error occured during query', 500)
+            return jsonify('Error occured during query!', 500)
 
         return jsonify(query(), 200)
 
