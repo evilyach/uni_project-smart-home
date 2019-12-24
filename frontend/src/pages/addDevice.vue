@@ -52,6 +52,10 @@
           <q-tab-panel name="coffee-maker">
             <add-coffee-maker />
           </q-tab-panel>
+
+          <q-tab-panel name="scales">
+            <add-scales />
+          </q-tab-panel>
         </q-tab-panels>
       </template>
     </q-splitter>
@@ -65,6 +69,7 @@ import addRobotVacuum from './addDevice/addRobotVacuum';
 import addVideoSurveillance from './addDevice/addVideoSurveillance';
 import addKettle from './addDevice/addKettle';
 import addCoffeeMaker from './addDevice/addCoffeeMaker';
+import addScales from './addDevice/addScales';
 
 export default {
   components: {
@@ -73,7 +78,8 @@ export default {
     addRobotVacuum,
     addVideoSurveillance,
     addKettle,
-    addCoffeeMaker
+    addCoffeeMaker,
+    addScales
   },
   name: "AddDevice",
   data () {
