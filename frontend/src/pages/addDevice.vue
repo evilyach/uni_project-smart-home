@@ -64,6 +64,10 @@
           <q-tab-panel name="lock">
             <add-lock />
           </q-tab-panel>
+
+          <q-tab-panel name="ac">
+            <add-AC />
+          </q-tab-panel>
         </q-tab-panels>
       </template>
     </q-splitter>
@@ -80,6 +84,7 @@ import addCoffeeMaker from './addDevice/addCoffeeMaker';
 import addScales from './addDevice/addScales';
 import addDishWasher from './addDevice/addDishWasher';
 import addLock from './addDevice/addLock';
+import addAC from './addDevice/addAC';
 
 export default {
   components: {
@@ -91,7 +96,8 @@ export default {
     addCoffeeMaker,
     addScales,
     addDishWasher,
-    addLock
+    addLock,
+    addAC
   },
   name: "AddDevice",
   data () {
