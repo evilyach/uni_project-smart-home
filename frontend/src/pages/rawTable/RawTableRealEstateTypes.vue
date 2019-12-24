@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-sm">
     <q-table
-      title="Типы недвижимости"
+      title="Типы помещения"
       :data="data"
       :columns="columns"
     >
@@ -29,7 +29,7 @@ export default {
         {
           name: "id",
           align: "center",
-          label: "ID недвижимости",
+          label: "ID типа помещения",
           field: row => row.id,
           format: val => `${val}`,
           sortable: true
@@ -37,7 +37,7 @@ export default {
         {
           name: "name",
           align: "center",
-          label: "Имя",
+          label: "Имя типа помещения",
           field: row => row.name,
           format: val => `${val}`,
           sortable: true

@@ -154,8 +154,8 @@
             <q-icon name="king_bed" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Недвижимость</q-item-label>
-            <q-item-label caption>Таблица "Недвижимость"</q-item-label>
+            <q-item-label>Помещения</q-item-label>
+            <q-item-label caption>Таблица "Помещения"</q-item-label>
           </q-item-section>
         </q-item>
 
@@ -164,8 +164,8 @@
             <q-icon name="location_city" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Типы недвижимости</q-item-label>
-            <q-item-label caption>Таблица "Типы недвижимости"</q-item-label>
+            <q-item-label>Типы помещений</q-item-label>
+            <q-item-label caption>Таблица "Типы помещений"</q-item-label>
           </q-item-section>
         </q-item>
 
