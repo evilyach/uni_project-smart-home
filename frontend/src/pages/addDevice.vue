@@ -44,6 +44,10 @@
           <q-tab-panel name="video-surveillance">
             <add-video-surveillance />
           </q-tab-panel>
+
+          <q-tab-panel name="kettle">
+            <add-kettle />
+          </q-tab-panel>
         </q-tab-panels>
       </template>
     </q-splitter>
@@ -55,13 +59,15 @@ import addFridge from './addDevice/addFridge';
 import addWashingMachine from './addDevice/addWashingMachine';
 import addRobotVacuum from './addDevice/addRobotVacuum';
 import addVideoSurveillance from './addDevice/addVideoSurveillance';
+import addKettle from './addDevice/addKettle';
 
 export default {
   components: {
     addFridge,
     addWashingMachine,
     addRobotVacuum,
-    addVideoSurveillance
+    addVideoSurveillance,
+    addKettle
   },
   name: "AddDevice",
   data () {
