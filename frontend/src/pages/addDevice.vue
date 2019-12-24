@@ -32,6 +32,10 @@
           <q-tab-panel name="fridge">
             <add-fridge />
           </q-tab-panel>
+
+          <q-tab-panel name="washing-machine">
+            <add-washing-machine />
+          </q-tab-panel>
         </q-tab-panels>
       </template>
     </q-splitter>
@@ -40,10 +44,12 @@
 
 <script>
 import addFridge from './addDevice/addFridge'
+import addWashingMachine from './addDevice/addWashingMachine'
 
 export default {
   components: {
-    addFridge
+    addFridge,
+    addWashingMachine
   },
   name: "AddDevice",
   data () {
