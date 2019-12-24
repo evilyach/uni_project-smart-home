@@ -68,6 +68,10 @@
           <q-tab-panel name="ac">
             <add-AC />
           </q-tab-panel>
+
+          <q-tab-panel name="lamp">
+            <add-lamp />
+          </q-tab-panel>
         </q-tab-panels>
       </template>
     </q-splitter>
@@ -85,6 +89,7 @@ import addScales from './addDevice/addScales';
 import addDishWasher from './addDevice/addDishWasher';
 import addLock from './addDevice/addLock';
 import addAC from './addDevice/addAC';
+import addLamp from './addDevice/addLamp';
 
 export default {
   components: {
@@ -97,7 +102,8 @@ export default {
     addScales,
     addDishWasher,
     addLock,
-    addAC
+    addAC,
+    addLamp
   },
   name: "AddDevice",
   data () {
