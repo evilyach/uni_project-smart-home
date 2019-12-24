@@ -31,5 +31,19 @@ def get_raw_table(table_name):
     return jsonify('Could not connect to database!', 500)
 
 
+@app.route('/api/get/real_estates', methods=['GET'])
+def get_real_estates():
+    ''' Get real estate name list '''
+    with postgresql.open(config.DATABASE_URI) as db:
+        try:
+            query = db.prepare('select select_real_estate_list()')
+        except:
+            return jsonify('Error occured during query!', 500)
+
+        return jsonify(query(), 200)
+
+    return jsonify('Could not connect to database!', 500)
+
+
 if __name__ == '__main__':
     app.run(host=config.HOSTNAME, port=config.PORT, debug=config.DEBUG)
