@@ -57,17 +57,17 @@
       v-model="speed"
       filled
       label="Скорость"
-      hint="Введите скорость работы стиральной машины"
+      hint="Введите скорость отжима стиральной машины"
       style="width: 99%"
     />
 
     <div style="height: 20px" />
 
     <q-input
-      v-model="max_value"
+      v-model="temperature"
       filled
-      label="Скорость отжима"
-      hint="Введите скорость отжима"
+      label="Температура"
+      hint="Введите температуру стирки"
       style="width: 99%"
     />
 
@@ -102,7 +102,7 @@ export default {
       isPwd: true,
       
       speed: '',
-      max_value: '',
+      temperature: '',
 
       getData() {
         axios.get("http://localhost:13491/api/get/real_estates")
@@ -146,10 +146,10 @@ export default {
         }
 
         // Get real estate id by name
-        let device_parameter_id;
+        let real_estate_id;
         this.full_options.forEach(element => {
           if (element["name"] === this.real_estate_picker) {
-            device_parameter_id = element["id"];
+            real_estate_id = element["id"];
           }
         });
 
@@ -173,19 +173,19 @@ export default {
 
         // Check if speed is valid
         if (isNaN(this.speed) === true ||
-            this.speed < 0 || this.speed > 120) {
+            this.speed < 0 || this.speed > 1600) {
           this.$q.notify({
-            message: "Введена некорректная скорость работы!",
+            message: "Введена некорректная скорость отжима!",
             color: "warning"
           });
           return;
         }
 
-        // Check if max_value is valid
-        if (isNaN(this.max_value) === true ||
-            this.max_value < 0 || this.max_value > 1000) {
+        // Check if temp is valid
+        if (isNaN(this.temperature) === true ||
+            this.temperature < 0 || this.temperature > 100) {
           this.$q.notify({
-            message: "Введена некорректная скорость отжима!",
+            message: "Введена некорректная температура работы!",
             color: "warning"
           });
           return;
@@ -195,20 +195,20 @@ export default {
         const date = new Date();
 
         axios.post("http://localhost:13491/api/set/device", {
-          'device_type_id':   1,
-          'real_estate_id':   device_parameter_id,
+          'device_type_id':   2,
+          'real_estate_id':   real_estate_id,
           'status':           0,
           'time_activated':   date.toISOString().split('T')[0],
           'time_deactivated': date.toISOString().split('T')[0],
           'name':             this.name,
           'ip':               this.ip,
           'to_alarm':         null,
-          'temperature':      null,
+          'temperature':      this.temperature,
           'humidity':         null,
-          'speed':            null,
+          'speed':            this.speed,
           'color':            null,
-          'max_value':        this.max_value,
-          'power':            2000,
+          'max_value':        null,
+          'power':            1500,
           'password':         passwordHash.generate(this.password),
         })
           .then(() => {

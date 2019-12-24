@@ -135,10 +135,10 @@ export default {
         }
 
         // Get real estate id by name
-        let device_parameter_id;
+        let real_estate_id;
         this.full_options.forEach(element => {
           if (element["name"] === this.real_estate_picker) {
-            device_parameter_id = element["id"];
+            real_estate_id = element["id"];
           }
         });
 
@@ -175,7 +175,7 @@ export default {
 
         axios.post("http://localhost:13491/api/set/device", {
           'device_type_id':   1,
-          'real_estate_id':   device_parameter_id,
+          'real_estate_id':   real_estate_id,
           'status':           0,
           'time_activated':   date.toISOString().split('T')[0],
           'time_deactivated': date.toISOString().split('T')[0],
