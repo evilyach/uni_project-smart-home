@@ -56,6 +56,10 @@
           <q-tab-panel name="scales">
             <add-scales />
           </q-tab-panel>
+
+          <q-tab-panel name="dish-washer">
+            <add-dish-washer />
+          </q-tab-panel>
         </q-tab-panels>
       </template>
     </q-splitter>
@@ -70,6 +74,7 @@ import addVideoSurveillance from './addDevice/addVideoSurveillance';
 import addKettle from './addDevice/addKettle';
 import addCoffeeMaker from './addDevice/addCoffeeMaker';
 import addScales from './addDevice/addScales';
+import addDishWasher from './addDevice/addDishWasher';
 
 export default {
   components: {
@@ -79,7 +84,8 @@ export default {
     addVideoSurveillance,
     addKettle,
     addCoffeeMaker,
-    addScales
+    addScales,
+    addDishWasher
   },
   name: "AddDevice",
   data () {
