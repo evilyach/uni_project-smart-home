@@ -173,24 +173,6 @@ export default {
         // Get current time
         const date = new Date();
 
-        console.log({
-          'device_type_id':   1,
-          'real_estate_id':   device_parameter_id,
-          'status':           0,
-          'time_activated':   date.toISOString().split('T')[0],
-          'time_deactivated': date.toISOString().split('T')[0],
-          'name':             this.name,
-          'ip':               this.ip,
-          'to_alarm':         null,
-          'temperature':      this.temperature,
-          'humidity':         null,
-          'speed':            null,
-          'color':            null,
-          'max_value':        null,
-          'power':            2000,
-          'password':         passwordHash.generate(this.password),
-        });
-
         axios.post("http://localhost:13491/api/set/device", {
           'device_type_id':   1,
           'real_estate_id':   device_parameter_id,
