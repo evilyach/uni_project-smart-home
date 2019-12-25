@@ -79,17 +79,17 @@
 </template>
 
 <script>
-import addFridge from './addDevice/addFridge';
-import addWashingMachine from './addDevice/addWashingMachine';
-import addRobotVacuum from './addDevice/addRobotVacuum';
-import addVideoSurveillance from './addDevice/addVideoSurveillance';
-import addKettle from './addDevice/addKettle';
-import addCoffeeMaker from './addDevice/addCoffeeMaker';
-import addScales from './addDevice/addScales';
-import addDishWasher from './addDevice/addDishWasher';
-import addLock from './addDevice/addLock';
-import addAC from './addDevice/addAC';
-import addLamp from './addDevice/addLamp';
+import addFridge from './../components/addDeviceComponents/addFridge';
+import addWashingMachine from './../components/addDeviceComponents/addWashingMachine';
+import addRobotVacuum from './../components/addDeviceComponents/addRobotVacuum';
+import addVideoSurveillance from './../components/addDeviceComponents/addVideoSurveillance';
+import addKettle from './../components/addDeviceComponents/addKettle';
+import addCoffeeMaker from './../components/addDeviceComponents/addCoffeeMaker';
+import addScales from './../components/addDeviceComponents/addScales';
+import addDishWasher from './../components/addDeviceComponents/addDishWasher';
+import addLock from './../components/addDeviceComponents/addLock';
+import addAC from './../components/addDeviceComponents/addAC';
+import addLamp from './../components/addDeviceComponents/addLamp';
 
 export default {
   components: {
