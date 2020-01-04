@@ -45,17 +45,18 @@ export default {
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/devices_by_user_account")
+        axios
+          .get("http://localhost:13491/api/raw/devices_by_user_account")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const device_id = element[0][0];
               const user_account_id = element[0][1];
 
               this.data.push({
-                "device_id": device_id,
-                "user_account_id": user_account_id
+                device_id: device_id,
+                user_account_id: user_account_id
               });
             });
           })
@@ -65,13 +66,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

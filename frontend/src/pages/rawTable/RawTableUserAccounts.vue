@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Учетные записи"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Учетные записи" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -73,13 +69,14 @@ export default {
           field: row => row.email,
           format: val => `${val}`,
           sortable: true
-        },
+        }
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/user_account")
+        axios
+          .get("http://localhost:13491/api/raw/user_account")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
@@ -90,12 +87,12 @@ export default {
               const email = element[0][5];
 
               this.data.push({
-                "id": id,
-                "user_account_type_id": user_account_type_id,
-                "name": name,
-                "username": username,
-                "password": password,
-                "email": email,
+                id: id,
+                user_account_type_id: user_account_type_id,
+                name: name,
+                username: username,
+                password: password,
+                email: email
               });
             });
           })
@@ -105,13 +102,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

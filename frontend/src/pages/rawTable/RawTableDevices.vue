@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Команды"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Команды" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -89,13 +85,14 @@ export default {
           field: row => row.name,
           format: val => `${val}`,
           sortable: true
-        },
+        }
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/device")
+        axios
+          .get("http://localhost:13491/api/raw/device")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
@@ -108,14 +105,14 @@ export default {
               const name = element[0][7];
 
               this.data.push({
-                "id": id,
-                "device_type_id": device_type_id,
-                "real_estate_id": real_estate_id,
-                "status": status,
-                "time_activated": time_activated,
-                "time_deactivated": time_deactivated,
-                "device_parameters_id": device_parameters_id,
-                "name": name
+                id: id,
+                device_type_id: device_type_id,
+                real_estate_id: real_estate_id,
+                status: status,
+                time_activated: time_activated,
+                time_deactivated: time_deactivated,
+                device_parameters_id: device_parameters_id,
+                name: name
               });
             });
           })
@@ -125,13 +122,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

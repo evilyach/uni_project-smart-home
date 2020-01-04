@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Типы помещения"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Типы помещения" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -41,21 +37,22 @@ export default {
           field: row => row.name,
           format: val => `${val}`,
           sortable: true
-        },
+        }
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/real_estate_type")
+        axios
+          .get("http://localhost:13491/api/raw/real_estate_type")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
               const name = element[0][1];
 
               this.data.push({
-                "id": id,
-                "name": name,
+                id: id,
+                name: name
               });
             });
           })
@@ -65,13 +62,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

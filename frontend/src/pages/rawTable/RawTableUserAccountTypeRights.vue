@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Права типа учетной записи"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Права типа учетной записи" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -81,14 +77,15 @@ export default {
           field: row => row.read_log_right,
           format: val => `${val}`,
           sortable: true
-        },
+        }
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/user_account_type_rights")
+        axios
+          .get("http://localhost:13491/api/raw/user_account_type_rights")
           .then(res => {
             console.log(data);
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
@@ -100,13 +97,13 @@ export default {
               const read_log_right = element[0][6];
 
               this.data.push({
-                "id": id,
-                "read_data_right": read_data_right,
-                "write_data_right": write_data_right,
-                "read_raw_tables_right": read_raw_tables_right,
-                "read_users_right": read_users_right,
-                "write_users_right": write_users_right,
-                "read_log_right": read_log_right,
+                id: id,
+                read_data_right: read_data_right,
+                write_data_right: write_data_right,
+                read_raw_tables_right: read_raw_tables_right,
+                read_users_right: read_users_right,
+                write_users_right: write_users_right,
+                read_log_right: read_log_right
               });
             });
           })
@@ -116,13 +113,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

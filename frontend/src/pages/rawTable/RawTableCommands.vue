@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Команды"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Команды" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -65,13 +61,14 @@ export default {
           field: row => row.argvar,
           format: val => `${val}`,
           sortable: true
-        },
+        }
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/command")
+        axios
+          .get("http://localhost:13491/api/raw/command")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
@@ -81,11 +78,11 @@ export default {
               const argvar = element[0][4];
 
               this.data.push({
-                "id": id,
-                "command_type_id": command_type_id,
-                "device_id": device_id,
-                "profile_id": profile_id,
-                "argvar": argvar
+                id: id,
+                command_type_id: command_type_id,
+                device_id: device_id,
+                profile_id: profile_id,
+                argvar: argvar
               });
             });
           })
@@ -95,13 +92,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

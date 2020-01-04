@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Параметры устройств"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Параметры устройств" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -105,13 +101,14 @@ export default {
           field: row => row.password,
           format: val => `${val}`,
           sortable: true
-        },
+        }
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/device_parameters")
+        axios
+          .get("http://localhost:13491/api/raw/device_parameters")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
@@ -126,16 +123,16 @@ export default {
               const password = element[0][9];
 
               this.data.push({
-                "id": id,
-                "ip": ip,
-                "to_alarm": to_alarm,
-                "temperature": temperature,
-                "humidity": humidity,
-                "speed": speed,
-                "color": color,
-                "max_value": max_value,
-                "power": power,
-                "password": password
+                id: id,
+                ip: ip,
+                to_alarm: to_alarm,
+                temperature: temperature,
+                humidity: humidity,
+                speed: speed,
+                color: color,
+                max_value: max_value,
+                power: power,
+                password: password
               });
             });
           })
@@ -145,13 +142,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

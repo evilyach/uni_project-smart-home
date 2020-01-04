@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Типы команд"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Типы команд" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -49,13 +45,14 @@ export default {
           field: row => row.argvar,
           format: val => `${val}`,
           sortable: true
-        },
+        }
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/command_type")
+        axios
+          .get("http://localhost:13491/api/raw/command_type")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
@@ -63,9 +60,9 @@ export default {
               const argvar = element[0][2];
 
               this.data.push({
-                "id": id,
-                "name": name,
-                "argvar": argvar,
+                id: id,
+                name: name,
+                argvar: argvar
               });
             });
           })
@@ -75,13 +72,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

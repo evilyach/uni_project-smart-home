@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Типы учетных записей"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Типы учетных записей" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -49,13 +45,14 @@ export default {
           field: row => row.user_account_rights_id,
           format: val => `${val}`,
           sortable: true
-        },
+        }
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/user_account_type")
+        axios
+          .get("http://localhost:13491/api/raw/user_account_type")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
@@ -63,9 +60,9 @@ export default {
               const user_account_rights_id = element[0][2];
 
               this.data.push({
-                "id": id,
-                "name": name,
-                "user_account_rights_id": user_account_rights_id,
+                id: id,
+                name: name,
+                user_account_rights_id: user_account_rights_id
               });
             });
           })
@@ -75,13 +72,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

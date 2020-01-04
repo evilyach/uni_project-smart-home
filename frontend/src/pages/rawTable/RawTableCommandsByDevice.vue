@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Управление"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Управление" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -45,17 +41,18 @@ export default {
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/command_by_device")
+        axios
+          .get("http://localhost:13491/api/raw/command_by_device")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const command_id = element[0][0];
               const device_id = element[0][1];
 
               this.data.push({
-                "command_id": command_id,
-                "device_id": device_id
+                command_id: command_id,
+                device_id: device_id
               });
             });
           })
@@ -65,13 +62,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

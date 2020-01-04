@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Помещения"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Помещения" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -73,13 +69,14 @@ export default {
           field: row => row.description,
           format: val => `${val}`,
           sortable: true
-        },
+        }
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/real_estate")
+        axios
+          .get("http://localhost:13491/api/raw/real_estate")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
@@ -90,12 +87,12 @@ export default {
               const description = element[0][5];
 
               this.data.push({
-                "id": id,
-                "real_estate_type_id": real_estate_type_id,
-                "area_id": area_id,
-                "name": name,
-                "address": address,
-                "description": description,
+                id: id,
+                real_estate_type_id: real_estate_type_id,
+                area_id: area_id,
+                name: name,
+                address: address,
+                description: description
               });
             });
           })
@@ -105,13 +102,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>

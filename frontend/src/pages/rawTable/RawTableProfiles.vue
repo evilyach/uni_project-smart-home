@@ -1,10 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-table
-      title="Профили"
-      :data="data"
-      :columns="columns"
-    >
+    <q-table title="Профили" :data="data" :columns="columns">
       <template v-slot:body-cell-name="props">
         <q-td :props="props">
           <div>
@@ -53,9 +49,10 @@ export default {
       ],
       data: [],
       getData() {
-        axios.get("http://localhost:13491/api/raw/profile")
+        axios
+          .get("http://localhost:13491/api/raw/profile")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               const id = element[0][0];
@@ -63,9 +60,9 @@ export default {
               const name = element[0][2];
 
               this.data.push({
-                "id": id,
-                "user_account_id": user_account_id,
-                "name": name
+                id: id,
+                user_account_id: user_account_id,
+                name: name
               });
             });
           })
@@ -75,13 +72,13 @@ export default {
               color: "negative"
             });
           });
-      },
-    }
+      }
+    };
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
 
 <style>
