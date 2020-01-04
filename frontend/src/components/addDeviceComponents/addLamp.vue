@@ -77,7 +77,7 @@
       rounded
       color="primary"
       label="Добавить"
-      @click='buttonClick'
+      @click="buttonClick"
     />
   </div>
 </template>
@@ -89,30 +89,31 @@ import passwordHash from "password-hash";
 export default {
   data() {
     return {
-      name: '',
+      name: "",
 
       real_estate_picker: null,
       options: [],
       full_options: [],
 
-      ip: '192.168.1.111',
+      ip: "192.168.1.111",
 
-      password: '',
+      password: "",
       isPwd: true,
 
-      color: '#454545',
+      color: "#454545",
 
       getData() {
-        axios.get("http://localhost:13491/api/get/real_estates")
+        axios
+          .get("http://localhost:13491/api/get/real_estates")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               this.options.push(element[0][1]);
 
               this.full_options.push({
-                "id": element[0][0],
-                "name": element[0][1],
+                id: element[0][0],
+                name: element[0][1]
               });
             });
           })
@@ -152,7 +153,11 @@ export default {
         });
 
         // Check if IP is valid
-        if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(this.ip) === false) {
+        if (
+          /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+            this.ip
+          ) === false
+        ) {
           this.$q.notify({
             message: "Введенный IP-адрес некорректен!",
             color: "warning"
@@ -161,7 +166,11 @@ export default {
         }
 
         // Check if password is strong
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(this.password) === false) {
+        if (
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(
+            this.password
+          ) === false
+        ) {
           this.$q.notify({
             message: "Пароль не удовлетворяет политике безопасности паролей!",
             color: "warning"
@@ -172,28 +181,29 @@ export default {
         // Get current time
         const date = new Date();
 
-        axios.post("http://localhost:13491/api/set/device", {
-          'device_type_id':   9,
-          'real_estate_id':   real_estate_id,
-          'status':           0,
-          'time_activated':   date.toISOString().split('T')[0],
-          'time_deactivated': date.toISOString().split('T')[0],
-          'name':             this.name,
-          'ip':               this.ip,
-          'to_alarm':         null,
-          'temperature':      null,
-          'humidity':         null,
-          'speed':            null,
-          'color':            this.color,
-          'max_value':        null,
-          'power':            null,
-          'password':         passwordHash.generate(this.password),
-        })
+        axios
+          .post("http://localhost:13491/api/set/device", {
+            device_type_id: 9,
+            real_estate_id: real_estate_id,
+            status: 0,
+            time_activated: date.toISOString().split("T")[0],
+            time_deactivated: date.toISOString().split("T")[0],
+            name: this.name,
+            ip: this.ip,
+            to_alarm: null,
+            temperature: null,
+            humidity: null,
+            speed: null,
+            color: this.color,
+            max_value: null,
+            power: null,
+            password: passwordHash.generate(this.password)
+          })
           .then(() => {
             this.$q.notify({
               message: "Устройство успешно добавлено!",
               color: "positive"
-            })
+            });
           })
           .catch(e => {
             this.$q.notify({
@@ -202,7 +212,7 @@ export default {
             });
           });
       }
-    }
+    };
   },
   methods: {
     buttonClick() {
@@ -211,6 +221,6 @@ export default {
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>

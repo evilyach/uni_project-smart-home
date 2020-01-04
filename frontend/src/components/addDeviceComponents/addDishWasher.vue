@@ -98,7 +98,7 @@
       rounded
       color="primary"
       label="Добавить"
-      @click='buttonClick'
+      @click="buttonClick"
     />
   </div>
 </template>
@@ -110,33 +110,34 @@ import passwordHash from "password-hash";
 export default {
   data() {
     return {
-      name: '',
+      name: "",
 
       real_estate_picker: null,
       options: [],
       full_options: [],
 
       to_alert: false,
-      ip: '192.168.0.103',
+      ip: "192.168.0.103",
 
-      password: '',
+      password: "",
       isPwd: true,
-      
-      temperature: '',
-      humidity: '',
-      speed: '',
+
+      temperature: "",
+      humidity: "",
+      speed: "",
 
       getData() {
-        axios.get("http://localhost:13491/api/get/real_estates")
+        axios
+          .get("http://localhost:13491/api/get/real_estates")
           .then(res => {
-            const data = res['data'][0];
+            const data = res["data"][0];
 
             data.forEach(element => {
               this.options.push(element[0][1]);
 
               this.full_options.push({
-                "id": element[0][0],
-                "name": element[0][1],
+                id: element[0][0],
+                name: element[0][1]
               });
             });
           })
@@ -176,7 +177,11 @@ export default {
         });
 
         // Check if IP is valid
-        if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(this.ip) === false) {
+        if (
+          /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+            this.ip
+          ) === false
+        ) {
           this.$q.notify({
             message: "Введенный IP-адрес некорректен!",
             color: "warning"
@@ -185,7 +190,11 @@ export default {
         }
 
         // Check if password is strong
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(this.password) === false) {
+        if (
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(
+            this.password
+          ) === false
+        ) {
           this.$q.notify({
             message: "Пароль не удовлетворяет политике безопасности паролей!",
             color: "warning"
@@ -194,8 +203,11 @@ export default {
         }
 
         // Check if temperature is valid
-        if (isNaN(this.temperature) === true ||
-            this.temperature < 0 || this.temperature > 100) {
+        if (
+          isNaN(this.temperature) === true ||
+          this.temperature < 0 ||
+          this.temperature > 100
+        ) {
           this.$q.notify({
             message: "Введена некорректная температура!",
             color: "warning"
@@ -204,8 +216,11 @@ export default {
         }
 
         // Check if humidity is valid
-        if (isNaN(this.humidity) === true ||
-            this.humidity < 0 || this.humidity > 100) {
+        if (
+          isNaN(this.humidity) === true ||
+          this.humidity < 0 ||
+          this.humidity > 100
+        ) {
           this.$q.notify({
             message: "Введена некорректная влажность!",
             color: "warning"
@@ -225,28 +240,29 @@ export default {
         // Get current time
         const date = new Date();
 
-        axios.post("http://localhost:13491/api/set/device", {
-          'device_type_id':   8,
-          'real_estate_id':   real_estate_id,
-          'status':           0,
-          'time_activated':   date.toISOString().split('T')[0],
-          'time_deactivated': date.toISOString().split('T')[0],
-          'name':             this.name,
-          'ip':               this.ip,
-          'to_alarm':         this.to_alarm,
-          'temperature':      this.temperature,
-          'humidity':         this.humidity,
-          'speed':            this.speed,
-          'color':            null,
-          'max_value':        null,
-          'power':            2000,
-          'password':         passwordHash.generate(this.password),
-        })
+        axios
+          .post("http://localhost:13491/api/set/device", {
+            device_type_id: 8,
+            real_estate_id: real_estate_id,
+            status: 0,
+            time_activated: date.toISOString().split("T")[0],
+            time_deactivated: date.toISOString().split("T")[0],
+            name: this.name,
+            ip: this.ip,
+            to_alarm: this.to_alarm,
+            temperature: this.temperature,
+            humidity: this.humidity,
+            speed: this.speed,
+            color: null,
+            max_value: null,
+            power: 2000,
+            password: passwordHash.generate(this.password)
+          })
           .then(() => {
             this.$q.notify({
               message: "Устройство успешно добавлено!",
               color: "positive"
-            })
+            });
           })
           .catch(e => {
             this.$q.notify({
@@ -255,7 +271,7 @@ export default {
             });
           });
       }
-    }
+    };
   },
   methods: {
     buttonClick() {
@@ -264,6 +280,6 @@ export default {
   },
   created() {
     this.getData();
-  },
-}
+  }
+};
 </script>
