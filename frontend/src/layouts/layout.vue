@@ -124,8 +124,12 @@
             <q-icon name="device_hub" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Контролируемые учетной записью устройства</q-item-label>
-            <q-item-label caption>Таблица "Контролируемые учетной записью устройства"</q-item-label>
+            <q-item-label>
+              Контролируемые учетной записью устройства
+            </q-item-label>
+            <q-item-label caption>
+              Таблица "Контролируемые учетной записью устройства"
+            </q-item-label>
           </q-item-section>
         </q-item>
 
@@ -135,7 +139,9 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Содержащиеся в профиле устройства</q-item-label>
-            <q-item-label caption>Таблица "Содержащиеся в профиле устройства"</q-item-label>
+            <q-item-label caption
+              >Таблица "Содержащиеся в профиле устройства"</q-item-label
+            >
           </q-item-section>
         </q-item>
 
@@ -209,7 +215,9 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Журнал</q-item-label>
-            <q-item-label caption>Журнал событий информационной системы</q-item-label>
+            <q-item-label caption
+              >Журнал событий информационной системы</q-item-label
+            >
           </q-item-section>
         </q-item>
 
