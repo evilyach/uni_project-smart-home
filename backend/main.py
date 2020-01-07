@@ -69,7 +69,7 @@ def get_raw_table(table_name):
 
     with postgresql.open(config.DATABASE_URI) as db:
         try:
-            query = db.prepare('select select_from_raw_' + table_name + '()')
+            query = db.prepare(f'select select_from_raw_{table_name}()')
         except:
             return jsonify('Error occured during query!', 500)
 
