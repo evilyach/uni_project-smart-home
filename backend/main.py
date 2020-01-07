@@ -1,10 +1,57 @@
-from flask import Flask, jsonify, make_response
+from flask import Flask, jsonify, make_response, request
+from datetime import datetime, timedelta
 import postgresql
 import re
+import jwt
 
 import config
+import auth
 
 app = Flask(__name__)
+
+
+@app.route('/api/auth/register', methods=['POST'])
+def register():
+    data = request.get_json()
+
+    user = auth.register(
+        data.get('user_account_type_id'),
+        data.get('name'),
+        data.get('username'),
+        data.get('password'),
+        data.get('email')
+    )
+
+    if not user:
+        return jsonify({
+            'message': 'Could not register'
+        }, 400)
+
+    return jsonify('kek'), 201
+
+
+@app.route('/api/auth/login', methods=['POST'])
+def login():
+    data = request.get_json()
+
+    username = data.get('username')
+    password = data.get('password')
+
+    user = auth.authenticate(username, password)
+
+    if not user:
+        return jsonify({
+            'message': 'Invalid credentials',
+            'authenticated': False}), 401
+
+    token = jwt.encode({
+        'sub': username,
+        'iat': datetime.utcnow(),
+        'exp': datetime.utcnow() + timedelta(minutes=30)},
+        config.SECRET_KEY
+    )
+
+    return jsonify({'token': token.decode('UTF-8')}), 200
 
 
 @app.route('/')
