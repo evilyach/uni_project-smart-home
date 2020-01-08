@@ -44,7 +44,7 @@ export default {
         axios
           .get("http://localhost:13491/api/raw/real_estate_type")
           .then(res => {
-            const data = res["data"][0];
+            const data = res["data"];
 
             data.forEach(element => {
               const id = element[0][0];

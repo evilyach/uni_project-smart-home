@@ -48,7 +48,7 @@ export default {
         axios
           .get("http://localhost:13491/api/raw/devices_in_profile")
           .then(res => {
-            const data = res["data"][0];
+            const data = res["data"];
 
             data.forEach(element => {
               const device_id = element[0][0];

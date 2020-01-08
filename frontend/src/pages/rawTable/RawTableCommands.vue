@@ -68,7 +68,7 @@ export default {
         axios
           .get("http://localhost:13491/api/raw/command")
           .then(res => {
-            const data = res["data"][0];
+            const data = res["data"];
 
             data.forEach(element => {
               const id = element[0][0];

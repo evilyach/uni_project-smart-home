@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import postgresql
 import re
 import jwt
+import json
 
 import config
 import auth
@@ -75,7 +76,7 @@ def get_raw_table(table_name):
         except:
             return jsonify('Error occured during query!', 500)
 
-        return jsonify(query(), 200)
+        return json.dumps(query(), indent=4, sort_keys=True, default=str), 200
 
     return jsonify('Could not connect to database!', 500)
 
