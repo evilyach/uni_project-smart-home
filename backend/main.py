@@ -92,5 +92,40 @@ def get_real_estates():
     return jsonify('Could not connect to database!', 500)
 
 
+@app.route('/api/set/device', methods=['POST'])
+def add_device():
+    ''' Set new device and device parameters into the DB '''
+    data = request.get_json()
+
+    with postgresql.open(config.DATABASE_URI) as db:
+        query = db.prepare(
+            "call add_device({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {})".format(
+                data.get('device_type_id'),
+                data.get('real_estate_id'),
+                data.get('status'),
+                f"'{data.get('time_activated')}'",
+                f"'{data.get('time_deactivated')}'",
+                f"'{data.get('name')}'",
+                f"'{data.get('ip')}'",
+                data.get('to_alarm')    if data.get('to_alarm')    else 'NULL',
+                data.get('temperature') if data.get('temperature') else 'NULL',
+                data.get('humidity')    if data.get('humidity')    else 'NULL',
+                data.get('speed')       if data.get('speed')       else 'NULL',
+                data.get('color')       if data.get('color')       else 'NULL',
+                data.get('max_value')   if data.get('max_value')   else 'NULL',
+                data.get('power')       if data.get('power')       else 'NULL',
+                f"'{data.get('password')}'"
+            )
+        )
+        try:
+            query()
+            return jsonify('Successfully added device'), 201
+
+        except Exception as e:
+            return jsonify('Could not add device: {}!'.format(str(e)), 400)
+
+    return jsonify('Could not connect to database!', 500)
+
+
 if __name__ == '__main__':
     app.run(host=config.HOSTNAME, port=config.PORT, debug=config.DEBUG)

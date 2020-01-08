@@ -184,14 +184,26 @@ export default {
 
         // Get current time
         const date = new Date();
+        const time =
+          date.getFullYear() +
+          "-" +
+          (date.getMonth() + 1) +
+          "-" +
+          date.getDate() +
+          " " +
+          date.getHours() +
+          ":" +
+          date.getMinutes() +
+          ":" +
+          date.getSeconds();
 
         axios
           .post("http://localhost:13491/api/set/device", {
             device_type_id: 1,
             real_estate_id: real_estate_id,
             status: 0,
-            time_activated: date.toISOString().split("T")[0],
-            time_deactivated: date.toISOString().split("T")[0],
+            time_activated: time,
+            time_deactivated: time,
             name: this.name,
             ip: this.ip,
             to_alarm: null,
