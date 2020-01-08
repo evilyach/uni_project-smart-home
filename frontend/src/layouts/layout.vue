@@ -43,10 +43,6 @@
 
         <!---->
 
-        <q-item-label header>Устройства</q-item-label>
-
-        <!---->
-
         <q-item-label header>Сырой вывод</q-item-label>
 
         <q-item clickable to="/rawAreas">
