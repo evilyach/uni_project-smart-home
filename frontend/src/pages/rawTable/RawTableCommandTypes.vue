@@ -17,6 +17,7 @@
 
 <script>
 import axios from "axios";
+import router from "../../router/routes-backend";
 
 export default {
   data() {
@@ -50,7 +51,7 @@ export default {
       data: [],
       getData() {
         axios
-          .get("http://localhost:13491/api/raw/command_type")
+          .get(router.table("command_type"))
           .then(res => {
             const data = res["data"];
 

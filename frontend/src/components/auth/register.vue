@@ -78,6 +78,7 @@
 <script>
 import axios from "axios";
 import crypto from "crypto";
+import router from "../../router/routes-backend"
 
 export default {
   data() {
@@ -105,7 +106,7 @@ export default {
         }
 
         axios
-          .post("http://localhost:13491/api/auth/register", {
+          .post(router.register(), {
             user_account_type_id: 3,
             username: this.user.username,
             name: this.user.name,

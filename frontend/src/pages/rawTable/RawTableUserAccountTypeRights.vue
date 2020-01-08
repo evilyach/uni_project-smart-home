@@ -17,6 +17,7 @@
 
 <script>
 import axios from "axios";
+import router from "../../router/routes-backend";
 
 export default {
   data() {
@@ -82,7 +83,7 @@ export default {
       data: [],
       getData() {
         axios
-          .get("http://localhost:13491/api/raw/user_account_type_rights")
+          .get(router.table("user_account_type_rights"))
           .then(res => {
             const data = res["data"];
 

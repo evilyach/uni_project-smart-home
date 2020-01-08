@@ -47,6 +47,7 @@
 <script>
 import axios from "axios";
 import crypto from "crypto";
+import router from "../../router/routes-backend";
 
 export default {
   data() {
@@ -67,7 +68,7 @@ export default {
         }
 
         axios
-          .post("http://localhost:13491/api/auth/login", {
+          .post(router.login(), {
             username: this.user.username,
             password: crypto
               .createHash("sha1")

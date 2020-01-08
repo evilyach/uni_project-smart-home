@@ -76,6 +76,7 @@
 <script>
 import axios from "axios";
 import passwordHash from "password-hash";
+import router from "../../router/routes-backend";
 
 export default {
   data() {
@@ -95,7 +96,7 @@ export default {
 
       getData() {
         axios
-          .get("http://localhost:13491/api/get/real_estates")
+          .get(router.getRealEstates())
           .then(res => {
             const data = res["data"][0];
 
@@ -118,7 +119,7 @@ export default {
 
       pushData() {
         // Check name to protect from SQLi
-        if (/^[a-zA-Zа-яА-Я0-9\-_]+$/.test(this.name) === false) {
+        if (/^[a-zA-Zа-яА-Я0-9\-_ ]+$/.test(this.name) === false) {
           this.$q.notify({
             message: "Введенное имя некорректно!",
             color: "warning"
@@ -185,7 +186,7 @@ export default {
           date.getSeconds();
 
         axios
-          .post("http://localhost:13491/api/set/device", {
+          .post(router.addDevice(), {
             device_type_id: 9,
             real_estate_id: real_estate_id,
             status: 0,

@@ -28,6 +28,7 @@
 
 <script>
 import axios from "axios";
+import router from "../router/routes-backend";
 
 export default {
   data() {
@@ -112,7 +113,7 @@ export default {
       data: [],
       getData() {
         axios
-          .get("http://localhost:13491/api/get/devices")
+          .get(router.getDevices())
           .then(res => {
             const data = res["data"][0];
 
