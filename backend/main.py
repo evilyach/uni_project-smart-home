@@ -95,6 +95,20 @@ def get_real_estates():
     return jsonify('Could not connect to database!', 500)
 
 
+@app.route('/api/get/devices', methods=['GET'])
+def get_devices():
+    ''' Get devices list '''
+    with postgresql.open(config.DATABASE_URI) as db:
+        try:
+            query = db.prepare('select get_devices()')
+        except:
+            return jsonify('Error occured during query!', 500)
+
+        return jsonify(query(), 200)
+
+    return jsonify('Could not connect to database!', 500)
+
+
 @app.route('/api/set/device', methods=['POST'])
 def add_device():
     ''' Set new device and device parameters into the DB '''

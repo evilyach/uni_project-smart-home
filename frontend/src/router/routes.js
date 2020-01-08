@@ -16,6 +16,10 @@ const routes = [
         component: () => import("pages/addDevice.vue")
       },
       {
+        path: "/list",
+        component: () => import("pages/listDevices.vue")
+      },
+      {
         path: "/rawAreas",
         component: () => import("pages/rawTable/RawTableAreas.vue")
       },
@@ -75,7 +79,8 @@ const routes = [
       },
       {
         path: "/rawUserAccountRights",
-        component: () => import("pages/rawTable/RawTableUserAccountTypeRights.vue")
+        component: () =>
+          import("pages/rawTable/RawTableUserAccountTypeRights.vue")
       }
     ]
   }
