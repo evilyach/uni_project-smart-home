@@ -37,9 +37,7 @@ def login():
     username = data.get('username')
     password = data.get('password')
 
-    user = auth.authenticate(username, password)
-
-    if not user:
+    if auth.authenticate(username, password) != 'Ok':
         return jsonify({
             'message': 'Invalid credentials',
             'authenticated': False}), 401
@@ -51,7 +49,11 @@ def login():
         config.SECRET_KEY
     )
 
-    return jsonify({'token': token.decode('UTF-8')}), 200
+    return jsonify({
+        'username': username,
+        'password': password,
+        'token': token.decode('UTF-8'),
+        'authenticated': True}), 200
 
 
 @app.route('/')
@@ -107,13 +109,13 @@ def add_device():
                 f"'{data.get('time_deactivated')}'",
                 f"'{data.get('name')}'",
                 f"'{data.get('ip')}'",
-                data.get('to_alarm')    if data.get('to_alarm')    else 'NULL',
-                data.get('temperature') if data.get('temperature') else 'NULL',
-                data.get('humidity')    if data.get('humidity')    else 'NULL',
-                data.get('speed')       if data.get('speed')       else 'NULL',
-                data.get('color')       if data.get('color')       else 'NULL',
-                data.get('max_value')   if data.get('max_value')   else 'NULL',
-                data.get('power')       if data.get('power')       else 'NULL',
+                data.get('to_alarm')    if data.get('to_alarm')     else 'NULL',
+                data.get('temperature') if data.get('temperature')  else 'NULL',
+                data.get('humidity')    if data.get('humidity')     else 'NULL',
+                data.get('speed')       if data.get('speed')        else 'NULL',
+                int(data.get('color')[1:], 16) if data.get('color') else 'NULL',
+                data.get('max_value')   if data.get('max_value')    else 'NULL',
+                data.get('power')       if data.get('power')        else 'NULL',
                 f"'{data.get('password')}'"
             )
         )
