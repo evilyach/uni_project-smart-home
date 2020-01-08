@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <q-splitter style="width: 90%">
+    <q-splitter style="width: 90%" v-model="NaN">
       <template v-slot:before>
         <q-tabs v-model="tab" vertical>
           <q-tab name="fridge" icon="kitchen" label="Умный холодильник" />
