@@ -13,6 +13,7 @@ app = Flask(__name__)
 
 @app.route('/api/auth/register', methods=['POST'])
 def register():
+    ''' Register new user API route '''
     data = request.get_json()
 
     user = auth.register(
@@ -28,11 +29,12 @@ def register():
             'message': 'Could not register'
         }, 400)
 
-    return jsonify('kek'), 201
+    return jsonify('Registered successfully'), 201
 
 
 @app.route('/api/auth/login', methods=['POST'])
 def login():
+    ''' Login / authenticate existing user API route '''
     data = request.get_json()
 
     username = data.get('username')
@@ -66,7 +68,7 @@ def index():
 
 @app.route('/api/raw/<string:table_name>', methods=['GET'])
 def get_raw_table(table_name):
-    ''' List devices query route '''
+    ''' List devices query API route '''
     if not re.match('^[a-z_]*$', table_name):
         return jsonify('Table name can only contain letters!', 400)
 
@@ -83,7 +85,7 @@ def get_raw_table(table_name):
 
 @app.route('/api/get/real_estates', methods=['GET'])
 def get_real_estates():
-    ''' Get real estate name list '''
+    ''' Get real estate name list API route '''
     with postgresql.open(config.DATABASE_URI) as db:
         try:
             query = db.prepare('select select_real_estate_list()')
@@ -97,7 +99,7 @@ def get_real_estates():
 
 @app.route('/api/get/devices', methods=['GET'])
 def get_devices():
-    ''' Get devices list '''
+    ''' Get devices list API route '''
     with postgresql.open(config.DATABASE_URI) as db:
         try:
             query = db.prepare('select get_devices()')
@@ -111,7 +113,7 @@ def get_devices():
 
 @app.route('/api/set/device', methods=['POST'])
 def add_device():
-    ''' Set new device and device parameters into the DB '''
+    ''' Set new device and device parameters into the DB API route '''
     data = request.get_json()
 
     with postgresql.open(config.DATABASE_URI) as db:
