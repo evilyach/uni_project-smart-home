@@ -90,6 +90,7 @@ export default {
             });
 
             this.$router.push("/");
+            window.location.reload();
           },
           () => {
             this.$q.notify({

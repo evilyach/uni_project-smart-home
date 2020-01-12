@@ -14,6 +14,17 @@
         <q-toolbar-title>
           Умный дом
         </q-toolbar-title>
+
+        <q-btn flat :label="getCurrentUser" @click="profileButton" />
+
+        <q-btn
+          flat
+          round
+          dense
+          icon="fas fa-sign-out-alt"
+          @click="logoutButton"
+          aria-label="Menu"
+        />
       </q-toolbar>
     </q-header>
 
@@ -243,6 +254,23 @@ export default {
     return {
       leftDrawerOpen: false
     };
+  },
+
+  computed: {
+    getCurrentUser() {
+      return localStorage.getItem("username");
+    }
+  },
+
+  methods: {
+    profileButton() {
+      this.$router.push("/profile");
+    },
+
+    logoutButton() {
+      this.$store.dispatch("logout");
+      this.$router.push("/auth");
+    }
   }
 };
 </script>

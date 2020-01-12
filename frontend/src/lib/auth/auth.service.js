@@ -14,14 +14,16 @@ class AuthService {
           .digest("hex")
       })
       .then(response => {
-        if (response.data.accessToken) {
+        if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("username", user.username);
         }
       });
   }
 
   logout() {
     localStorage.removeItem("user");
+    localStorage.removeItem("username");
   }
 
   register(user) {
