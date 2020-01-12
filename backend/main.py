@@ -52,11 +52,7 @@ def login():
         config.SECRET_KEY
     )
 
-    return jsonify({
-        'username': username,
-        'password': password,
-        'token': token.decode('UTF-8'),
-        'authenticated': True}), 200
+    return jsonify({ 'token': token.decode('UTF-8') }), 200
 
 
 @app.route('/')
