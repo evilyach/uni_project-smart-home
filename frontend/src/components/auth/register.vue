@@ -1,5 +1,13 @@
 <template>
   <div class="gutter-sm" id="page">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+
+    <div style="height: 20px" />
+
     <div>
       <q-input
         v-model="user.username"
@@ -76,64 +84,64 @@
 </template>
 
 <script>
-import axios from "axios";
-import crypto from "crypto";
-import router from "../../router/routes-backend"
+import User from "../../models/user";
 
 export default {
+  name: "register",
+
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
+  },
+
   data() {
     return {
       isPwd: true,
-      user: {
-        username: "",
-        name: "",
-        password: "",
-        email: ""
-      },
-      pushData() {
-        if (
-          this.user.username === "" ||
-          this.user.name === "" ||
-          this.user.password === "" ||
-          this.user.email === ""
-        ) {
-          this.$q.notify({
-            message: "Не все поля заполнены!",
-            color: "negative"
-          });
-
-          return;
-        }
-
-        axios
-          .post(router.register(), {
-            user_account_type_id: 3,
-            username: this.user.username,
-            name: this.user.name,
-            password: crypto
-              .createHash("sha1")
-              .update(this.user.password, "binary")
-              .digest("hex"),
-            email: this.user.email
-          })
-          .then(() => {
-            this.$q.notify({
-              message: "Пользователь успешно зарегистрирован!",
-              color: "positive"
-            });
-          })
-          .catch(e => {
-            this.$q.notify({
-              message: "Не удалось зарегистрироваться! " + e,
-              color: "negative"
-            });
-          });
-      }
+      user: new User("", "", "", ""),
+      submitted: false,
+      successful: false,
+      message: ""
     };
   },
   methods: {
     buttonClick() {
-      this.pushData();
+      if (
+        this.user.username === "" ||
+        this.user.name === "" ||
+        this.user.password === "" ||
+        this.user.email === ""
+      ) {
+        this.$q.notify({
+          message: "Введите данные!",
+          color: "warning"
+        });
+        return;
+      }
+
+      this.message = "";
+      this.submitted = true;
+
+      this.$store.dispatch("register", this.user).then(
+        data => {
+          this.message = data.message;
+          this.successful = true;
+
+          this.$q.notify({
+            message: "Пользователь успешно зарегистрирован!",
+            color: "positive"
+          });
+        },
+        error => {
+          this.message = error.message;
+          this.successful = false;
+
+          this.$q.notify({
+            message: `Не удалось зарегистрировать пользователя: ${this.message}`,
+            color: "negative"
+          });
+        }
+      );
     }
   }
 };
@@ -143,5 +151,15 @@ export default {
 #page {
   width: 600px;
   max-width: 90vw;
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
 }
 </style>

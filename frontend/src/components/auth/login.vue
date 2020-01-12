@@ -1,5 +1,13 @@
 <template>
   <div class="gutter-sm" id="page">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+
+    <div style="height: 20px" />
+
     <div>
       <q-input
         v-model="user.username"
@@ -45,56 +53,59 @@
 </template>
 
 <script>
-import axios from "axios";
-import crypto from "crypto";
-import router from "../../router/routes-backend";
+import User from "../../models/user";
 
 export default {
+  name: "login",
+
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
+  },
+
   data() {
     return {
       isPwd: true,
-      user: {
-        username: "",
-        password: ""
-      },
-      pushData() {
-        if (this.user.username === "" || this.user.password === "") {
-          this.$q.notify({
-            message: "Не все поля заполнены!",
-            color: "negative"
-          });
+      user: new User("", "", "", "")
+    };
+  },
 
-          return;
-        }
+  mounted() {
+    if (this.loggedIn) {
+      this.$router.push("/");
+    }
+  },
 
-        axios
-          .post(router.login(), {
-            username: this.user.username,
-            password: crypto
-              .createHash("sha1")
-              .update(this.user.password, "binary")
-              .digest("hex")
-          })
-          .then(() => {
+  methods: {
+    buttonClick() {
+      this.loading = true;
+
+      if (this.user.username && this.user.password) {
+        this.$store.dispatch("login", this.user).then(
+          () => {
             this.$q.notify({
-              message: "Вошли",
+              message: "Вы успешно вошли в систему!",
               color: "positive"
             });
 
-            // TODO:
-          })
-          .catch(e => {
+            this.$router.push("/");
+          },
+          () => {
             this.$q.notify({
-              message: "Не удалось войти: " + e,
+              message: "Не удалось войти. Введите правильные данные!",
               color: "negative"
             });
-          });
+
+            this.loading = false;
+          }
+        );
+      } else {
+        this.$q.notify({
+          message: "Введите данные!",
+          color: "warning"
+        });
       }
-    };
-  },
-  methods: {
-    buttonClick() {
-      this.pushData();
     }
   }
 };
@@ -104,5 +115,15 @@ export default {
 #page {
   width: 600px;
   max-width: 90vw;
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
 }
 </style>
