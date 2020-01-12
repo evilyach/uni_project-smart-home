@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, make_response, request
+from flask import Flask, jsonify, request
 from datetime import datetime, timedelta
 import postgresql
 import re
