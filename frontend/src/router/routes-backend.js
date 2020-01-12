@@ -1,27 +1,43 @@
-const host = "http://localhost:13491";
-
 export default {
+  host: "http://localhost:13491",
+
   register() {
-    return host + "/api/auth/register";
+    return this.host + "/api/auth/register";
   },
 
   login() {
-    return host + "/api/auth/login";
+    return this.host + "/api/auth/login";
+  },
+
+  publicContent() {
+    return this.host + "/api/test/all";
+  },
+
+  userBoard() {
+    return this.host + "/api/test/user";
+  },
+
+  operatorBoard() {
+    return this.host + "/api/test/operator";
+  },
+
+  adminBoard() {
+    return this.host + "/api/test/admin";
   },
 
   table(table_name) {
-    return host + `/api/raw/${table_name}`;
+    return this.host + `/api/raw/${table_name}`;
   },
 
   getRealEstates() {
-    return host + "/api/get/real_estates";
+    return this.host + "/api/get/real_estates";
   },
 
   getDevices() {
-    return host + "/api/get/devices";
+    return this.host + "/api/get/devices";
   },
 
   addDevice() {
-    return host + "/api/set/device";
+    return this.host + "/api/set/device";
   }
 };
