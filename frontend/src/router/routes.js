@@ -28,6 +28,10 @@ const routes = [
         component: () => import("pages/addDevice.vue")
       },
       {
+        path: "/delete",
+        component: () => import("pages/deleteDevice.vue")
+      },
+      {
         path: "/list",
         component: () => import("pages/listDevices.vue")
       },

@@ -161,5 +161,23 @@ def add_device():
     return jsonify('Could not connect to database!', 500)
 
 
+@app.route('/api/delete/device', methods=['POST'])
+def delete_device():
+    ''' Delete device from the DB API route '''
+    data = request.get_json()
+
+    with postgresql.open(config.DATABASE_URI) as db:
+        query = db.prepare("delete from shcp.public.device where name = '{}'".format(data.get('name')))
+
+        try:
+            query()
+            return jsonify('Successfully deleted device'), 200
+
+        except Exception as e:
+            return jsonify('Could not delete device: {}!'.format(str(e)), 400)
+
+    return jsonify('Could not connect to database!', 500)
+
+
 if __name__ == '__main__':
     app.run(host=config.HOSTNAME, port=config.PORT, debug=config.DEBUG)

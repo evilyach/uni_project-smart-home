@@ -39,5 +39,9 @@ export default {
 
   addDevice() {
     return this.host + "/api/set/device";
+  },
+
+  deleteDevice() {
+    return this.host + "/api/delete/device";
   }
 };

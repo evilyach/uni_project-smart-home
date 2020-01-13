@@ -52,6 +52,16 @@
           </q-item-section>
         </q-item>
 
+        <q-item clickable to="/delete">
+          <q-item-section avatar>
+            <q-icon name="delete" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Удалить устройство</q-item-label>
+            <q-item-label caption>Удалить устройство из системы</q-item-label>
+          </q-item-section>
+        </q-item>
+
         <!---->
 
         <q-item-label header>Сырой вывод</q-item-label>
