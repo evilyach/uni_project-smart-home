@@ -20,6 +20,9 @@ class AuthService {
           localStorage.setItem("rights", response.data.rights);
           localStorage.setItem("name", response.data.name);
         }
+      })
+      .catch(error => {
+        console.log(`Error: ${error}`);
       });
   }
 

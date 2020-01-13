@@ -32,7 +32,7 @@
       <q-list>
         <q-item-label header>Возможности</q-item-label>
 
-        <q-item clickable to="/addNew">
+        <q-item clickable to="/addNew" v-if="getRights[1] === 'true'">
           <q-item-section avatar>
             <q-icon name="add" />
           </q-item-section>
@@ -42,7 +42,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/list">
+        <q-item clickable to="/list" v-if="getRights[0] === 'true'">
           <q-item-section avatar>
             <q-icon name="list" />
           </q-item-section>
@@ -52,7 +52,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/delete">
+        <q-item clickable to="/delete" v-if="getRights[1] === 'true'">
           <q-item-section avatar>
             <q-icon name="delete" />
           </q-item-section>
@@ -64,9 +64,11 @@
 
         <!---->
 
-        <q-item-label header>Сырой вывод</q-item-label>
+        <q-item-label header v-if="getRights[3] === 'true'"
+          >Сырой вывод</q-item-label
+        >
 
-        <q-item clickable to="/rawAreas">
+        <q-item clickable to="/rawAreas" v-if="getRights[3] === 'true'">
           <q-item-section avatar>
             <q-icon name="map" />
           </q-item-section>
@@ -76,7 +78,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawCommands">
+        <q-item clickable to="/rawCommands" v-if="getRights[3] === 'true'">
           <q-item-section avatar>
             <q-icon name="contactless" />
           </q-item-section>
@@ -86,7 +88,11 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawCommandsByDevice">
+        <q-item
+          clickable
+          to="/rawCommandsByDevice"
+          v-if="getRights[3] === 'true'"
+        >
           <q-item-section avatar>
             <q-icon name="device_hub" />
           </q-item-section>
@@ -96,7 +102,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawCommandTypes">
+        <q-item clickable to="/rawCommandTypes" v-if="getRights[3] === 'true'">
           <q-item-section avatar>
             <q-icon name="contactless" />
           </q-item-section>
@@ -106,7 +112,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawDevices">
+        <q-item clickable to="/rawDevices" v-if="getRights[3] === 'true'">
           <q-item-section avatar>
             <q-icon name="devices_other" />
           </q-item-section>
@@ -116,7 +122,11 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawDeviceParameters">
+        <q-item
+          clickable
+          to="/rawDeviceParameters"
+          v-if="getRights[3] === 'true'"
+        >
           <q-item-section avatar>
             <q-icon name="perm_device_information" />
           </q-item-section>
@@ -126,7 +136,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawDeviceTypes">
+        <q-item clickable to="/rawDeviceTypes" v-if="getRights[3] === 'true'">
           <q-item-section avatar>
             <q-icon name="devices_other" />
           </q-item-section>
@@ -136,7 +146,11 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawDevicesByUserAccount">
+        <q-item
+          clickable
+          to="/rawDevicesByUserAccount"
+          v-if="getRights[3] === 'true'"
+        >
           <q-item-section avatar>
             <q-icon name="device_hub" />
           </q-item-section>
@@ -150,7 +164,11 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawDevicesInProfile">
+        <q-item
+          clickable
+          to="/rawDevicesInProfile"
+          v-if="getRights[3] === 'true'"
+        >
           <q-item-section avatar>
             <q-icon name="device_hub" />
           </q-item-section>
@@ -162,7 +180,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawProfiles">
+        <q-item clickable to="/rawProfiles" v-if="getRights[3] === 'true'">
           <q-item-section avatar>
             <q-icon name="person_outline" />
           </q-item-section>
@@ -172,7 +190,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawRealEstates">
+        <q-item clickable to="/rawRealEstates" v-if="getRights[3] === 'true'">
           <q-item-section avatar>
             <q-icon name="king_bed" />
           </q-item-section>
@@ -182,7 +200,11 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawRealEstateTypes">
+        <q-item
+          clickable
+          to="/rawRealEstateTypes"
+          v-if="getRights[3] === 'true'"
+        >
           <q-item-section avatar>
             <q-icon name="location_city" />
           </q-item-section>
@@ -192,7 +214,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawUserAccounts">
+        <q-item clickable to="/rawUserAccounts" v-if="getRights[3] === 'true'">
           <q-item-section avatar>
             <q-icon name="people" />
           </q-item-section>
@@ -202,7 +224,11 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawUserAccountTypes">
+        <q-item
+          clickable
+          to="/rawUserAccountTypes"
+          v-if="getRights[3] === 'true'"
+        >
           <q-item-section avatar>
             <q-icon name="group" />
           </q-item-section>
@@ -212,7 +238,11 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/rawUserAccountRights">
+        <q-item
+          clickable
+          to="/rawUserAccountRights"
+          v-if="getRights[3] === 'true'"
+        >
           <q-item-section avatar>
             <q-icon name="border_clear" />
           </q-item-section>
@@ -226,7 +256,7 @@
 
         <q-item-label header>Настройки</q-item-label>
 
-        <q-item clickable to="/log">
+        <q-item clickable to="/log" v-if="getRights[5] === 'true'">
           <q-item-section avatar>
             <q-icon name="history" />
           </q-item-section>
@@ -238,7 +268,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable to="/about">
+        <q-item clickable to="/about" v-if="getRights[0] === 'true'">
           <q-item-section avatar>
             <q-icon name="info" />
           </q-item-section>
@@ -269,6 +299,10 @@ export default {
   computed: {
     getCurrentUser() {
       return localStorage.getItem("username");
+    },
+
+    getRights() {
+      return localStorage.getItem("rights").split(",");
     }
   },
 
