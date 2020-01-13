@@ -83,13 +83,13 @@ export default {
 
       if (this.user.username && this.user.password) {
         this.$store.dispatch("login", this.user).then(
-          () => {
+          async () => {
             this.$q.notify({
               message: "Вы успешно вошли в систему!",
               color: "positive"
             });
 
-            this.$router.push("/");
+            await this.$router.push("/");
             window.location.reload();
           },
           () => {
