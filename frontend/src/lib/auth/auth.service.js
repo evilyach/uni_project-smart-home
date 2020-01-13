@@ -15,15 +15,19 @@ class AuthService {
       })
       .then(response => {
         if (response.data.token) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("token", JSON.stringify(response.data.token));
           localStorage.setItem("username", user.username);
+          localStorage.setItem("rights", response.data.rights);
+          localStorage.setItem("name", response.data.name);
         }
       });
   }
 
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("rights");
+    localStorage.removeItem("name");
   }
 
   register(user) {

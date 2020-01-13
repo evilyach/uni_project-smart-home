@@ -43,7 +43,22 @@ def login():
     if auth.authenticate(username, password) != 'Ok':
         return jsonify({
             'message': 'Invalid credentials',
-            'authenticated': False}), 401
+            'authenticated': False
+        }), 401
+
+    rights = auth.get_rights(username)
+    if not rights:
+        return jsonify({
+            'message': 'Could not get rights for user {}'.format(username),
+            'authenticated': False
+        }), 500
+
+    name = auth.get_user(username)
+    if not name:
+        return jsonify({
+            'message': 'Could not name for user {}'.format(username),
+            'authenticated': False
+        }), 500
 
     token = jwt.encode({
         'sub': username,
@@ -52,7 +67,11 @@ def login():
         config.SECRET_KEY
     )
 
-    return jsonify({ 'token': token.decode('UTF-8') }), 200
+    return jsonify({
+        'token': token.decode('UTF-8'),
+        'name': name,
+        'rights': rights
+    }), 200
 
 
 @app.route('/')

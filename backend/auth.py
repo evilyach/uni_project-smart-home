@@ -1,5 +1,4 @@
 import postgresql
-
 import config
 
 
@@ -28,6 +27,30 @@ def authenticate(username, password):
         return None
 
     return 'Ok'
+
+
+def get_rights(username):
+    with postgresql.open(config.DATABASE_URI) as db:
+        try:
+            rights_query = db.prepare("select get_rights('{}')".format(username))
+            rights = rights_query()
+        except:
+            print('Could not get rights for user {}'.format(username))
+            return None
+
+    return rights
+
+
+def get_user(username):
+    with postgresql.open(config.DATABASE_URI) as db:
+        try:
+            name_query = db.prepare("select get_name('{}')".format(username))
+            name = name_query()
+        except:
+            print('Could not get name for user {}'.format(username))
+            return None
+
+    return name
 
 
 def register(user_account_type_id, name, username, password, email):

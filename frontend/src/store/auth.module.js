@@ -1,6 +1,6 @@
 import AuthService from "./../lib/auth/auth.service";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("token"));
 const initiateState = user
   ? { status: { loggedIn: true }, user }
   : { status: {}, user: null };
