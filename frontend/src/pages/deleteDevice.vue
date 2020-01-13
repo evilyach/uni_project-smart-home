@@ -28,6 +28,7 @@
 <script>
 import axios from "axios";
 import router from "./../router/routes-backend";
+import { addLogRecord } from "../lib/log";
 
 export default {
   data() {
@@ -66,12 +67,26 @@ export default {
               color: "positive"
             });
 
+            addLogRecord({
+              log_level: "info",
+              message: `Удалено устройство с названием "${
+                this.names[this.options.indexOf(this.list)]
+              }"`
+            });
+
             window.location.reload();
           })
           .catch(e => {
             this.$q.notify({
               message: "Не удалось получить доступ к базе данных: " + e,
               color: "negative"
+            });
+
+            addLogRecord({
+              log_level: "warning",
+              message: `Неудачная попытка удалить устройство с названием "${
+                this.names[this.options.indexOf(this.list)]
+              }"`
             });
           });
       }

@@ -97,6 +97,7 @@
 import axios from "axios";
 import passwordHash from "password-hash";
 import router from "../../router/routes-backend";
+import { addLogRecord } from "../../lib/log";
 
 export default {
   data() {
@@ -248,12 +249,22 @@ export default {
             password: passwordHash.generate(this.password)
           })
           .then(() => {
+            addLogRecord({
+              log_level: "info",
+              message: `Добавлено устройство "Кофеварка" с названием "${this.name}"`
+            });
+
             this.$q.notify({
               message: "Устройство успешно добавлено!",
               color: "positive"
             });
           })
           .catch(e => {
+            addLogRecord({
+              log_level: "error",
+              message: `Неудачная попытка добавить устройство "Кофеварка" с названием "${this.name}"`
+            });
+
             this.$q.notify({
               message: "Не удалось получить доступ к базе данных: " + e,
               color: "negative"

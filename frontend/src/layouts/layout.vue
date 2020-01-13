@@ -287,6 +287,8 @@
 </template>
 
 <script>
+import { addLogRecord } from "../lib/log";
+
 export default {
   name: "Layout",
 
@@ -312,6 +314,13 @@ export default {
     },
 
     logoutButton() {
+      addLogRecord({
+        log_level: "info",
+        message: `Пользователь с именем ${localStorage.getItem(
+          "username"
+        )} вышел из системы`
+      });
+
       this.$store.dispatch("logout");
       this.$router.push("/auth");
     }

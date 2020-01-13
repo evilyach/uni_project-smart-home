@@ -54,6 +54,7 @@
 
 <script>
 import User from "../../models/user";
+import { addLogRecord } from "../../lib/log";
 
 export default {
   name: "login",
@@ -82,25 +83,34 @@ export default {
       this.loading = true;
 
       if (this.user.username && this.user.password) {
-        this.$store.dispatch("login", this.user).then(
-          async () => {
+        this.$store.dispatch("login", this.user)
+          .then(async () => {
             this.$q.notify({
               message: "Вы успешно вошли в систему!",
               color: "positive"
             });
 
+            addLogRecord({
+              log_level: "info",
+              message: `Пользователь ${this.username} успешно зашел в систему`
+            });
+
             await this.$router.push("/");
             window.location.reload();
-          },
-          () => {
+          })
+          .catch((error) => {
             this.$q.notify({
-              message: "Не удалось войти. Введите правильные данные!",
+              message: `Не удалось войти: ${error}!`,
               color: "negative"
             });
 
+            addLogRecord({
+              log_level: "warning",
+              message: `Была произведена неудачная попытка входа с использованием имени пользователя ${this.username}`
+            });
+
             this.loading = false;
-          }
-        );
+          });
       } else {
         this.$q.notify({
           message: "Введите данные!",

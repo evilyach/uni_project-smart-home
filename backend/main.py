@@ -179,5 +179,30 @@ def delete_device():
     return jsonify('Could not connect to database!', 500)
 
 
+@app.route('/api/log/add', methods=['POST'])
+def addLogRecord():
+    ''' Add log record to the DB API route '''
+    data = request.get_json()
+
+    print(data)
+
+    with postgresql.open(config.DATABASE_URI) as db:
+        query = db.prepare("call add_log_record('{}', '{}', '{}', '{}')".format(
+            data.get('log_level'),
+            data.get('message'),
+            data.get('time'),
+            data.get('author'),
+        ))
+
+        try:
+            query()
+            return jsonify('Successfully added record'), 201
+
+        except Exception as e:
+            return jsonify('Could not add record: {}!'.format(str(e)), 400)
+
+    return jsonify('Could not connect to database!', 500)
+
+
 if __name__ == '__main__':
     app.run(host=config.HOSTNAME, port=config.PORT, debug=config.DEBUG)

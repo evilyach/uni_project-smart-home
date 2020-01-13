@@ -43,5 +43,13 @@ export default {
 
   deleteDevice() {
     return this.host + "/api/delete/device";
+  },
+
+  addLogRecord() {
+    return this.host + "/api/log/add";
+  },
+
+  getLogs() {
+    return this.host + "/api/log/get";
   }
 };

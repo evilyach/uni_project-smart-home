@@ -85,6 +85,7 @@
 
 <script>
 import User from "../../models/user";
+import { addLogRecord } from "../../lib/log";
 
 export default {
   name: "register",
@@ -127,6 +128,11 @@ export default {
           this.message = data.message;
           this.successful = true;
 
+          addLogRecord({
+            log_level: "info",
+            message: `Пользователь ${this.username} зарегистрирован в системе`
+          });
+
           this.$q.notify({
             message: "Пользователь успешно зарегистрирован!",
             color: "positive"
@@ -135,6 +141,11 @@ export default {
         error => {
           this.message = error.message;
           this.successful = false;
+
+          addLogRecord({
+            log_level: "warning",
+            message: `Была произведена неудачная попытка регистрации с использованием имени пользователя ${this.username}`
+          });
 
           this.$q.notify({
             message: `Не удалось зарегистрировать пользователя: ${this.message}`,
