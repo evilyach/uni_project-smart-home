@@ -42,6 +42,13 @@ const routes = [
         }
       },
       {
+        path: "/log",
+        component: () => import("pages/log.vue"),
+        beforeEnter: (to, from, next) => {
+          guard(to, from, next, rights.read_log_right);
+        }
+      },
+      {
         path: "/delete",
         component: () => import("pages/deleteDevice.vue"),
         beforeEnter: (to, from, next) => {

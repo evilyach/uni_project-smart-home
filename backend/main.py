@@ -184,8 +184,6 @@ def addLogRecord():
     ''' Add log record to the DB API route '''
     data = request.get_json()
 
-    print(data)
-
     with postgresql.open(config.DATABASE_URI) as db:
         query = db.prepare("call add_log_record('{}', '{}', '{}', '{}')".format(
             data.get('log_level'),
@@ -200,6 +198,21 @@ def addLogRecord():
 
         except Exception as e:
             return jsonify('Could not add record: {}!'.format(str(e)), 400)
+
+    return jsonify('Could not connect to database!', 500)
+
+
+@app.route('/api/log/get', methods=['GET'])
+def getLogs():
+    ''' Get 100 last log records from the DB API Route '''
+
+    with postgresql.open(config.DATABASE_URI) as db:
+        try:
+            query = db.prepare("select * from shcp.public.log limit 100")
+        except Exception as e:
+            return jsonify('Could not get logs: {}!'.format(str(e)), 400)
+
+        return json.dumps(query(), indent=4, sort_keys=True, default=str), 200
 
     return jsonify('Could not connect to database!', 500)
 
