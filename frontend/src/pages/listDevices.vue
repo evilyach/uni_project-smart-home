@@ -110,8 +110,11 @@ export default {
           sortable: true
         }
       ],
+
       data: [],
+
       getData() {
+        console.log(localStorage.getItem("rights"));
         axios
           .get(router.getDevices())
           .then(res => {
@@ -152,6 +155,7 @@ export default {
       }
     };
   },
+
   created() {
     this.getData();
   }
