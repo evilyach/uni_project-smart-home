@@ -1,26 +1,3 @@
-# Smart Home Course Project (smart-home-course-project)
+# Курсовой проект по дисциплине "Безопасность систем баз данных. Часть 1" на тему "Разработка подсистемы администрирования системы «Умный дом»"
 
-\"Smart Home\" DBSec Course Project
-
-## Install the dependencies
-```bash
-npm install
-```
-
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
-
-### Lint the files
-```bash
-npm run lint
-```
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+TODO: сделать README.md
